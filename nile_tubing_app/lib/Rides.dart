@@ -11,10 +11,10 @@ class Rides extends StatelessWidget {
       children: [
         Container(
           // ignore: prefer_const_literals_to_create_immutables
-          child: Row(children: [
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Image.asset('assets/NTLogo.png'),
-            SizedBox(width: 180, height: 100),
-            Icon(Icons.shopping_bag, size: 50, color: Colors.white)
+            Icon(Icons.shopping_cart, size: 35, color: Colors.white)
           ]),
           height: 140,
           color: Colors.blue[900],
@@ -35,12 +35,16 @@ class Rides extends StatelessWidget {
               style: TextStyle(fontSize: 20, color: Colors.black),
               textAlign: TextAlign.center),
         ),
-        Row(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            SizedBox(width: 150, height: 80),
-            ElevatedButton(onPressed: () {}, child: Text('Book Now')),
-          ],
+        Padding(
+          padding: EdgeInsets.only(top: 15),
+          child: Row(
+            // ignore: prefer_const_literals_to_create_immutables
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {}, child: Text('Book Now')),
+            ],
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: 25), //apply padding to some sides only
@@ -58,13 +62,17 @@ class Rides extends StatelessWidget {
               style: TextStyle(fontSize: 20, color: Colors.black),
               textAlign: TextAlign.center),
         ),
-        Row(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            SizedBox(width: 150, height: 80),
-            ElevatedButton(onPressed: () {}, child: Text('Book Now')),
-          ],
-        )
+        Padding(
+          padding: EdgeInsets.only(top: 15),
+          child: Row(
+            // ignore: prefer_const_literals_to_create_immutables
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () {}, child: Text('Book Now')),
+            ],
+          ),
+        ),
       ],
     ));
   }
