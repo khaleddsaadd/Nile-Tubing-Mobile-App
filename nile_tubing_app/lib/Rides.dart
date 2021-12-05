@@ -16,8 +16,7 @@ class Rides extends StatelessWidget {
             Image.asset('assets/NTLogo.png'),
             Icon(Icons.shopping_cart, size: 35, color: Colors.white)
           ]),
-          height: 140,
-          color: Colors.blue[900],
+          height: 100,
         ),
         Padding(
           padding: EdgeInsets.only(top: 25), //apply padding to some sides only
