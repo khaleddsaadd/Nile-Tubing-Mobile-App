@@ -63,6 +63,9 @@ flutter:
     - assets/s.jpeg
     - assets/couple.jpg
     - assets/10162.png
+    - assets/homepage1.jpeg
+    - assets/homepage2.jpeg
+    - assets/Background.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
