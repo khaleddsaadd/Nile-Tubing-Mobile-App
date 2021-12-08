@@ -32,18 +32,20 @@ class Home extends StatelessWidget {
           ]),
         ),
 
-            SizedBox(height: 110),
+           
 
 
             Padding(
-          padding: EdgeInsets.only(top: 25), //apply padding to some sides only
+          padding: EdgeInsets.only(top: 135), //apply padding to some sides only
           child: Text("Go with the flow of the Nile River",
               style: TextStyle(fontSize: 36 , color: Colors.white),
               textAlign: TextAlign.center),
         ),
         
-        SizedBox(height: 35),
         
+         Padding(
+          padding: EdgeInsets.only(top: 30),
+          child:
         Row(children: [
           IconButton(
             icon: const Icon(Icons.arrow_back_ios, size: 35),
@@ -58,19 +60,30 @@ class Home extends StatelessWidget {
           ),
           ],
           ),
-        SizedBox(height: 60),
+        ),
         
-          // ElevatedButton(
-          //               style: ButtonStyle(
-          //                   backgroundColor: MaterialStateProperty.all<Color>(
-          //                       Color(0xff123456))),
-          //               onPressed: () {},
-          //               child: Text('Book Now',
-          //                   style: TextStyle(
-          //                       fontSize: 15,
-          //                       color: Colors.white,
-          //                       fontFamily: 'Cairo'))),
-
+        Padding(
+          padding: EdgeInsets.only(top: 80),
+          child: Row(
+            // ignore: prefer_const_literals_to_create_immutables
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+               ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Color(0xff123456))),
+                        onPressed: () {},
+                        child: Text('Book Now',
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontFamily: 'Cairo'))),
+            ],
+          ),
+        ),
+        
+        
          /*ButtonBar( alignment: MainAxisAlignment.center,
             
               children: [

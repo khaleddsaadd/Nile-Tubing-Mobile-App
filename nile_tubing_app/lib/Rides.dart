@@ -19,17 +19,7 @@ class Rides extends StatelessWidget {
           ]),
           height: 100,
         ),
-         ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xff123456))),
-                        onPressed: () {},
-                        child: Text('Book Now',
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: 'Cairo'))),
-
+        
         Padding(
           padding: EdgeInsets.only(top: 25), //apply padding to some sides only
           child: Text("Single Tubing Ride",
