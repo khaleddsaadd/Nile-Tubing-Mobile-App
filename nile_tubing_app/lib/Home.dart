@@ -13,7 +13,10 @@ class Home extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/Background.jpg"),
-                        fit: BoxFit.cover)),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.3), BlendMode.darken))
+                        ),
          
          
          child: ListView(children: [
@@ -24,6 +27,7 @@ class Home extends StatelessWidget {
             SizedBox(
               width: 180,
             ),
+             
             Icon(Icons.local_grocery_store, size: 35, color: Color(0xff123456)),
             SizedBox(
               width: 15,
@@ -35,7 +39,7 @@ class Home extends StatelessWidget {
            
 
 
-            Padding(
+        Padding(
           padding: EdgeInsets.only(top: 135), //apply padding to some sides only
           child: Text("Go with the flow of the Nile River",
               style: TextStyle(fontSize: 36 , color: Colors.white),
@@ -43,7 +47,7 @@ class Home extends StatelessWidget {
         ),
         
         
-         Padding(
+        Padding(
           padding: EdgeInsets.only(top: 30),
           child:
         Row(children: [
@@ -69,16 +73,28 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-               ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xff123456))),
-                        onPressed: () {},
-                        child: Text('Book Now',
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: 'Cairo'))),
+              //  ElevatedButton(
+              //           style: ButtonStyle(
+              //               backgroundColor: MaterialStateProperty.all<Color>(
+              //                   Color(0xff123456))),
+              //           onPressed: () {},
+              //           child: Text('Book Now',
+              //               style: TextStyle(
+              //                   fontSize: 15,
+              //                   color: Colors.white,
+              //                   fontFamily: 'Cairo')
+              //                   )
+              //                   ),
+              RaisedButton(
+                onPressed: () {},
+                color: Color(0xff123456).withOpacity(0.8),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                child: Text("Book Now",style: TextStyle(
+                                 fontSize: 15,
+                                 color: Colors.white,
+                                 fontFamily: 'Cairo')),
+              ),
             ],
           ),
         ),
@@ -107,10 +123,12 @@ class Home extends StatelessWidget {
                   onPressed: (){},
                 ),],
             ) */       
+        ],
+        ),
         
-        ],    
-            ),
-          )
+          ),
+        
+          
         );
   }
 }
