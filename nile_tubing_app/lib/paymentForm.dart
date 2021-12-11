@@ -54,7 +54,7 @@ class PaymentFormState extends State<PaymentForm> {
               if (value == null ||
                   value.isEmpty ||
                   !value.contains(RegExp(r'[0-9]')) ||
-                  value.length > 12) {
+                  value.length < 12) {
                 return 'Please enter a vaild number';
               }
               return null;
