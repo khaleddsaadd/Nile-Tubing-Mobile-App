@@ -1,112 +1,162 @@
-
 import 'package:flutter/material.dart';
-// import 'forgetPassword.dart';
-// import 'whatsapp.dart';
+import 'Home.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  bool _isObscure = true;
+  final _formKey = GlobalKey<FormState>();
+  final myControllerE = TextEditingController();
+  final myControllerP = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(leading: Icon(Icons.menu), title: Text("Sign In"), actions: [
-        IconButton(
-            onPressed: () {
-              print("help");
-            },
-            icon: Icon(Icons.help)),
-        IconButton(onPressed: () => print("search"), icon: Icon(Icons.search))
-      ]),
-      body: Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 150,
-            ),
-            Text(
-              "Sign In",
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 30, width: 90),
-            TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  hintText: "Email"),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                  hintText: "Password"),
-            ),
-            SizedBox(height: 10),
-            Row(children: [
-              SizedBox(width: 220),
-             InkWell(
-                // onTap: (){
-                //   Navigator.push(context, MaterialPageRoute(builder: (context) => ,));
-                // },
-                child: Text(
-                  "Forget Password?",
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
+      backgroundColor: Color(0xFFF1D158),
+      body: 
+      Form(
+          key: _formKey,
+          child: ListView(children: <Widget>[
+            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.all(10),
+              child: Column(children: [
+                IconButton(alignment: Alignment(-35, 5),
+            icon: new Icon(Icons.arrow_back, color:Color(0xFF002E5C), ),
+            onPressed: () =>  Navigator.push(context, MaterialPageRoute(builder: (context) => Home()),
+        
+         )),
+                SizedBox(
+                  height: 50,
                 ),
-              ),
-            ]),
-            SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () {
-                // Respond to button press
-              },
-              child: Text(
-                'Login',
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            Row(
-              children: [
-                SizedBox(width: 40),
                 Text(
-                  "Don't have an account?",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Respond to button press
-                  },
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                  "Sign In",
+                  style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF002E5C)
                   ),
-                )
-              ],
+                ),
+                SizedBox(height: 30, width: 90),
+                TextFormField(
+                  controller: myControllerE,
+                 
+            
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50)
+                      ),
+                      labelText: 'Email',
+                      hintText: "Email",
+                      contentPadding: EdgeInsets.all(20.0),),
+                      
+                      
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: myControllerP,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration: InputDecoration(
+                    
+                     filled: true,
+                     fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50)
+                      ),
+                      labelText: 'Password',
+                      hintText: "Password",
+                      contentPadding: EdgeInsets.all(20.0),
+                      ),
+                      obscureText: true,
+
+              //  suffixIcon: IconButton(
+              //   icon: Icon(
+              //     _isObscure ? Icons.visibility : Icons.visibility_off,
+              //   ),
+              //   onPressed: () {
+              //     setState(() {
+              //       _isObscure = !_isObscure;
+              //     });
+              //   },
+              // ),
+                ),
+                SizedBox(height: 10),
+                Column(
+                  children: [
+                    SizedBox(width: 140),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Home()),
+);
+                        }
+                      },
+                      style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green[700]),),
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        SizedBox(height: 50),
+                        SizedBox(width: 40),
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold,
+                              color: Color(0xFF002E5C)),
+                              
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Respond to button press
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              color: Colors.green[700],
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ]),
             )
-          ],
-        ),
-      ),
+          ])),
     );
   }
 
-  void not() {
-    print("notifications");
-  }
+  
 }
-
-
