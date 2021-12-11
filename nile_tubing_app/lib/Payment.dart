@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'paymentForm.dart';
 
 class Payment extends StatefulWidget {
 //right click refactor stateful
@@ -7,23 +8,6 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
-  /* final _formkey = GlobalKey<FormState>();
-  final myController = TextEditingController();
-  @override
-  void dispose() {
-    myController.dispose();
-    super.dispose();
-  }
-
-  void _printLast() {
-    print('text field: ${myController.text}');
-  }
-
-  void initState() {
-    super.initState();
-    myController.addListener(_printLast);
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +22,43 @@ class _PaymentState extends State<Payment> {
                 Image.asset('assets/NTLogo.png'),
                 Icon(Icons.person_outline_rounded,
                     size: 45, color: Colors.yellow),
+              ],
+            )),
+        SizedBox(
+          height: 40,
+        ),
+        Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(50),
+            height: 450,
+            decoration: new BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 30.0,
+                offset: Offset(
+                  0,
+                  5,
+                ),
+              )
+            ]),
+            child: Column(
+              children: [
+                Row(children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 20,
+                    ),
+                  ),
+                  Text('Fill Your Info To Checkout',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontFamily: 'Cairo',
+                      ),
+                      textAlign: TextAlign.center),
+                ]),
+                Padding(padding: const EdgeInsets.only(top: 20)),
+                PaymentForm(),
               ],
             )),
       ],
