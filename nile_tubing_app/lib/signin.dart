@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nile_tubing_app/signup.dart';
 import 'Home.dart';
 
 class SignIn extends StatefulWidget {
@@ -30,7 +31,7 @@ class _SignInState extends State<SignIn> {
         
          )),
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Text(
                   "Sign In",
@@ -137,7 +138,10 @@ class _SignInState extends State<SignIn> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // Respond to button press
+                            if (_formKey.currentState!.validate()) {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()),
+); 
+                        } // Respond to button press
                           },
                           child: Text(
                             "Sign Up",
