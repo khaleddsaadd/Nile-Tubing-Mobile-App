@@ -94,7 +94,8 @@ child:Row(children: [
      ),
      Container(
        child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-       children: [Container(
+       children: [
+         Padding(padding: const EdgeInsets.only(left:10),child:        Container(
          child: Row(children: [
 //Add Icon          
           Container(
@@ -126,23 +127,20 @@ child:Row(children: [
             color: Colors.white,
             onPressed: () {},
           ),
-          ),
+          )
 ])
-),
-      Container(
+) ),
+ Padding(padding: const EdgeInsets.only(right: 10),child:Container(
         child: Container(
           child: Text("Total:250"),
           )
-          ,)  
+          ) )
         ])        
- )  
- 
-   ,
-
-        ],))
-       
-        ],),
-   )
+        )
+        ])
+        )       
+        ])
+        )
   ),
   Padding(padding: const EdgeInsets.symmetric(horizontal: 15),
   child: Container(
