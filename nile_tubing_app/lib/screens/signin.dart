@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nile_tubing_app/signup.dart';
+import 'package:nile_tubing_app/screens/signup.dart';
 import 'Home.dart';
 
 class SignIn extends StatefulWidget {

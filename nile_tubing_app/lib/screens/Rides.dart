@@ -1,7 +1,7 @@
 // ignore: avoid_web_libraries_in_flutter
 // ignore_for_file: use_key_in_widget_constructors, unused_import, unused_import, duplicate_ignore, prefer_const_constructors, file_names
 import 'package:flutter/material.dart';
-import 'SelectedRide.dart';
+import 'package:nile_tubing_app/screens/SelectedRide.dart';
 
 class Rides extends StatefulWidget {
   // This widget is the root of your application.
