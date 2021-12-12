@@ -56,7 +56,7 @@ child:Row(children: [
     )],
   )
   )
-        ,Container(decoration: BoxDecoration(color: Colors.red),
+        ,Container(
         width: MediaQuery. of(context). size. width-140,
          
         child:
@@ -94,7 +94,7 @@ child:Row(children: [
      ),
      Container(
        child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-       children: [Container(decoration: BoxDecoration(color: Colors.black),
+       children: [Container(
          child: Row(children: [
 //Add Icon          
           Container(
@@ -130,7 +130,7 @@ child:Row(children: [
 ])
 ),
       Container(
-        child: Container(decoration: BoxDecoration(color: Colors.blue),
+        child: Container(
           child: Text("Total:250"),
           )
           ,)  
