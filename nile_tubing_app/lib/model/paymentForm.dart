@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/enums.dart';
 import '../model/methods.dart';
+import 'package:nile_tubing_app/screens/Ticket.dart';
 
 // Create a Form widget.
 class PaymentForm extends StatefulWidget {
@@ -59,7 +60,7 @@ class PaymentFormState extends State<PaymentForm> {
               if (value == null ||
                   value.isEmpty ||
                   !value.contains(RegExp(r'[0-9]')) ||
-                  value.length < 12) {
+                  value.length < 11) {
                 return 'Please enter a vaild number';
               }
               return null;
@@ -189,16 +190,22 @@ class PaymentFormState extends State<PaymentForm> {
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Color(0xff123456)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ))),
-                child: Text('Checkout',
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                    )),
+                child: Text('Pay',
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
                         fontFamily: 'Cairo')),
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {}
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Ticket()),
+                    );
+                  }
                 },
               )),
         ],

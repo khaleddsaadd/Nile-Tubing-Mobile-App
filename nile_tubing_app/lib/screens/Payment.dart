@@ -31,7 +31,7 @@ class _PaymentState extends State<Payment> {
         Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(50),
-            height: 750,
+            height: 950,
             decoration: new BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(
                 color: Colors.grey,
