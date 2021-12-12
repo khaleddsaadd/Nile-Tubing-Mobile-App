@@ -100,9 +100,11 @@ child:Row(children: [
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.0),
           color: Colors.blue[300],
           ),
-          child: Icon(Icons.remove,
-          size:15.0
-          )
+          child: IconButton(
+            icon: const Icon(Icons.add, size: 15),
+            color: Colors.white,
+            onPressed: () {},
+          ),
           ),
 //Counter 
           Padding(padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -116,9 +118,11 @@ child:Row(children: [
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.0),
           color: Colors.grey[300],
           ),
-          child: Icon(Icons.add,
-          size:15.0
-          )
+          child: IconButton(
+            icon: const Icon(Icons.remove, size: 15),
+            color: Colors.white,
+            onPressed: () {},
+          ),
           ),
           SizedBox(width: 85),
           Text("Total: ")

@@ -15,7 +15,8 @@ class Home extends StatelessWidget {
                         image: AssetImage("assets/Background.jpg"),
                         fit: BoxFit.cover,
                         colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.3), BlendMode.darken))
+                          Colors.black.withOpacity(0.3), BlendMode.darken)
+                          )
                         ),
          
          
@@ -49,21 +50,28 @@ class Home extends StatelessWidget {
         
         Padding(
           padding: EdgeInsets.only(top: 30),
-          child:
-        Row(children: [
-          IconButton(
+          child:Container(
+            width:MediaQuery. of(context). size. width,
+           // decoration: BoxDecoration(color: Colors.red),
+            child: Row(children: [
+          
+          Align(alignment: Alignment.centerLeft,
+          child:IconButton(
             icon: const Icon(Icons.arrow_back_ios, size: 35),
             color: Colors.white,
             onPressed: () {},
           ),
-          SizedBox(width:315),
+          ),
+Padding(padding: EdgeInsets.only(left:315),child:
           IconButton(
             icon: const Icon(Icons.arrow_forward_ios, size: 35),
             color: Colors.white,
             onPressed: () {},
           ),
-          ],
-          ),
+ )
+          ],),
+          )
+        
         ),
         
         Padding(
