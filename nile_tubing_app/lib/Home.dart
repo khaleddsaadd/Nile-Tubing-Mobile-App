@@ -47,28 +47,31 @@ class Home extends StatelessWidget {
               textAlign: TextAlign.center),
         ),
         
-        
+      
         Padding(
           padding: EdgeInsets.only(top: 30),
           child:Container(
             width:MediaQuery. of(context). size. width,
            // decoration: BoxDecoration(color: Colors.red),
-            child: Row(children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              children: [
           
-          Align(alignment: Alignment.centerLeft,
-          child:IconButton(
+          //Align(alignment: Alignment.centerLeft,
+          //child:
+          IconButton(
             icon: const Icon(Icons.arrow_back_ios, size: 35),
             color: Colors.white,
             onPressed: () {},
           ),
-          ),
-Padding(padding: EdgeInsets.only(left:315),child:
+          //),
+//Padding(padding: EdgeInsets.only(left:315),child:
           IconButton(
             icon: const Icon(Icons.arrow_forward_ios, size: 35),
             color: Colors.white,
             onPressed: () {},
           ),
- )
+ //)
           ],),
           )
         
