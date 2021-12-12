@@ -53,15 +53,17 @@ child:Row(children: [
                           ),
       borderRadius: BorderRadius.circular(5),
                            ),
-    ),
-   ],
+    )],
   )
   )
-        ,SizedBox(width: 20),
-        Column(children: [ Padding(padding:const EdgeInsets.only(top: 5.0),
+        ,Container(decoration: BoxDecoration(color: Colors.red),
+        width: MediaQuery. of(context). size. width-140,
+         
+        child:
+        Column(
+           children: [ Padding(padding:const EdgeInsets.only(top: 5.0),
         child:Align(alignment: Alignment.topCenter,
         child:Container(
-          width: 220,
           height:40,
           child: Align (alignment: Alignment.center,
           child: Text("TripName",
@@ -78,7 +80,6 @@ child:Row(children: [
        Padding(padding:const EdgeInsets.only(top: 15.0,bottom:20.0 ),
         child:Align(alignment: Alignment.topCenter,
         child:Container(
-          width: 220,
           height:30,
            
  child: Align (alignment: Alignment.center,
@@ -91,8 +92,10 @@ child:Row(children: [
        )
       )
      ),
-     Align(alignment: Alignment.topLeft,
-     child: Container(child:Row(children: [
+     Container(
+       child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+       children: [Container(decoration: BoxDecoration(color: Colors.black),
+         child: Row(children: [
 //Add Icon          
           Container(
           width: 20,
@@ -124,14 +127,19 @@ child:Row(children: [
             onPressed: () {},
           ),
           ),
-          SizedBox(width: 85),
-          Text("Total: ")
-          ]) 
-        
- )  )
+])
+),
+      Container(
+        child: Container(decoration: BoxDecoration(color: Colors.blue),
+          child: Text("Total:250"),
+          )
+          ,)  
+        ])        
+ )  
+ 
    ,
 
-        ],),
+        ],))
        
         ],),
    )
@@ -150,8 +158,8 @@ child:Row(children: [
           ),),
           ),
  ),
-   SizedBox(height: 80),
-   Padding(padding: const EdgeInsets.only(top:80),
+   
+   Padding(padding: const EdgeInsets.only(top:160),
    child:Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   // ignore: prefer_const_literals_to_create_immutables
 children: [
