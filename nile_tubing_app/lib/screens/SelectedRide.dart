@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nile_tubing_app/screens/checkOut.dart';
 import '../modules/home_widget.dart';
+import 'package:nile_tubing_app/screens/checkOut.dart';
 
 class SelectedRide extends StatelessWidget {
   @override
@@ -38,7 +40,7 @@ class SelectedRide extends StatelessWidget {
             decoration: new BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.grey,
                   blurRadius: 30.0, // soften the shadow
@@ -53,7 +55,7 @@ class SelectedRide extends StatelessWidget {
             child: Column(children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: Column(children: [
+                child: Column(children: const [
                   Text('200 EGP',
                       style: TextStyle(
                           fontSize: 30,
@@ -108,7 +110,12 @@ class SelectedRide extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                             Color(0xff123456))),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CheckOut()),
+                      );
+                    },
                     child: Text('Checkout',
                         style: TextStyle(
                             fontSize: 15,
