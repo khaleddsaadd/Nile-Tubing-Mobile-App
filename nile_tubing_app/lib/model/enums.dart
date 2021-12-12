@@ -1,0 +1,1 @@
+enum genders { male, female }

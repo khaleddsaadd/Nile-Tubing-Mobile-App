@@ -1,7 +1,5 @@
-// ignore: file_names
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'home_widget.dart';
+import '../modules/home_widget.dart';
 
 class SelectedRide extends StatelessWidget {
   @override
@@ -41,7 +39,6 @@ class SelectedRide extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
-                //background color of box
                 BoxShadow(
                   color: Colors.grey,
                   blurRadius: 30.0, // soften the shadow
@@ -53,7 +50,6 @@ class SelectedRide extends StatelessWidget {
                 )
               ],
             ),
-            // child: new Text("Hk"),
             child: Column(children: [
               Align(
                 alignment: Alignment.centerLeft,
@@ -97,30 +93,28 @@ class SelectedRide extends StatelessWidget {
               SizedBox(
                 height: 50,
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Colors.white30)),
-                        onPressed: () {},
-                        child: Text('Add to cart',
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.yellow,
-                                fontFamily: 'Cairo'))),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xff123456))),
-                        onPressed: () {},
-                        child: Text('Checkout',
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: 'Cairo')))
-                  ])
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white30)),
+                    onPressed: () {},
+                    child: Text('Add to cart',
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.yellow,
+                            fontFamily: 'Cairo'))),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Color(0xff123456))),
+                    onPressed: () {},
+                    child: Text('Checkout',
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontFamily: 'Cairo')))
+              ])
             ])),
         Padding(
           padding: EdgeInsets.only(top: 40),

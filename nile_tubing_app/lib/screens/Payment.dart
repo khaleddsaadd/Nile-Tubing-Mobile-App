@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'paymentForm.dart';
+import '../model/paymentForm.dart';
+import '../modules/home_widget.dart';
 
 class Payment extends StatefulWidget {
 //right click refactor stateful
@@ -30,7 +31,7 @@ class _PaymentState extends State<Payment> {
         Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(50),
-            height: 550,
+            height: 750,
             decoration: new BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -46,16 +47,26 @@ class _PaymentState extends State<Payment> {
                 Row(children: [
                   Padding(
                     padding: EdgeInsets.only(
-                      left: 20,
+                      left: 35,
                     ),
                   ),
-                  Text('Fill Your Info To Checkout',
+                  Text('GET YOUR TICKET',
                       style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: 'Cairo',
-                      ),
+                          fontSize: 25,
+                          color: Color(0xff123456),
+                          //color: Colors.yellow[600],
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
+                  Text(
+                    ' !',
+                    style: TextStyle(
+                        fontSize: 30,
+                        //color: Color(0xff123456),
+                        color: Colors.yellow[700],
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.bold),
+                  ),
                 ]),
                 Padding(padding: const EdgeInsets.only(top: 20)),
                 PaymentForm(),

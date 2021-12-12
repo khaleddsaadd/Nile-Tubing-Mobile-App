@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nile_tubing_app/SelectedRide.dart';
+import 'package:nile_tubing_app/screens/SelectedRide.dart';
+import 'package:nile_tubing_app/screens/Payment.dart';
 
 class Home extends StatefulWidget {
   @override
   State createState() {
     return _HomeState();
+
     SelectedRide();
   }
 }
