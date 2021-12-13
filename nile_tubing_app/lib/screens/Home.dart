@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/Rides.dart';
 import 'package:nile_tubing_app/screens/checkOut.dart';
+import 'package:nile_tubing_app/screens/signin.dart';
 import 'Rides.dart';
 
 class Home extends StatelessWidget {
@@ -28,8 +29,12 @@ class Home extends StatelessWidget {
                 SizedBox(
                   width: 15,
                 ),
-                Icon(Icons.person_outline_rounded,
-                    size: 35, color: Colors.yellow),
+               IconButton(
+            icon: new Icon(Icons.person_outline_rounded,
+                    size: 35, color: Colors.yellow), 
+            onPressed: () =>  Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()),
+        
+         )),
               ]),
             ),
             Padding(

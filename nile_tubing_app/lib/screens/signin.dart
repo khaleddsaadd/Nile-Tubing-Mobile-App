@@ -138,10 +138,10 @@ class _SignInState extends State<SignIn> {
                         ),
                         TextButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
+                           
                           Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()),
 ); 
-                        } // Respond to button press
+                         // Respond to button press
                           },
                           child: Text(
                             "Sign Up",
