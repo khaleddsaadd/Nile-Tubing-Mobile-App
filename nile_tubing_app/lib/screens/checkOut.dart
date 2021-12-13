@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/Payment.dart';
 import 'package:nile_tubing_app/screens/Rides.dart';
@@ -8,14 +10,32 @@ class CheckOut extends StatelessWidget {
     return Scaffold(
       body: ListView(children: [
         Container(
-          height: 100,
+          // ignore: prefer_const_literals_to_create_immutables
           child: Row(children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back)),
             Image.asset('assets/NTLogo.png'),
-            SizedBox(
-              width: 220,
-            ),
-            Icon(Icons.person_outline_rounded, size: 35, color: Colors.yellow),
+            Padding(
+              padding: EdgeInsets.only(left: 110),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.shopping_cart,
+                        size: 35, color: Color.fromRGBO(0, 46, 92, 1)),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.person_outline_rounded,
+                          size: 35, color: Colors.yellow)),
+                ],
+              ),
+            )
           ]),
+          height: 100,
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -156,7 +176,7 @@ class CheckOut extends StatelessWidget {
           ),
         ),
         Padding(
-            padding: const EdgeInsets.only(top: 160),
+            padding: const EdgeInsets.only(top: 35),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [

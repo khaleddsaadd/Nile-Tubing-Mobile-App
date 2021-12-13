@@ -11,18 +11,32 @@ class SelectedRide extends StatelessWidget {
       padding: EdgeInsets.all(15),
       children: [
         Container(
-          height: 100,
+          // ignore: prefer_const_literals_to_create_immutables
           child: Row(children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back)),
             Image.asset('assets/NTLogo.png'),
-            SizedBox(
-              width: 180,
-            ),
-            Icon(Icons.local_grocery_store, size: 35, color: Color(0xff123456)),
-            SizedBox(
-              width: 15,
-            ),
-            Icon(Icons.person_outline_rounded, size: 35, color: Colors.yellow),
+            Padding(
+              padding: EdgeInsets.only(left: 83),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.shopping_cart,
+                        size: 35, color: Color.fromRGBO(0, 46, 92, 1)),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.person_outline_rounded,
+                          size: 35, color: Colors.yellow)),
+                ],
+              ),
+            )
           ]),
+          height: 100,
         ),
         Padding(
           padding: EdgeInsets.only(top: 30),

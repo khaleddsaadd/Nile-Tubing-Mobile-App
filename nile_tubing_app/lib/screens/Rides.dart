@@ -16,13 +16,18 @@ class _RidesState extends State<Rides> {
         body: ListView(
       children: [
         // ignore: sized_box_for_whitespace
+
         Container(
           // ignore: prefer_const_literals_to_create_immutables
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          child: Row(children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back)),
             Image.asset('assets/NTLogo.png'),
             Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding: EdgeInsets.only(left: 110),
               child: Row(
                 children: [
                   IconButton(
@@ -38,7 +43,7 @@ class _RidesState extends State<Rides> {
               ),
             )
           ]),
-          height: 100,
+          height: 80,
         ),
         Column(
           // ignore: prefer_const_literals_to_create_immutables

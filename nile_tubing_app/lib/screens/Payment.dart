@@ -16,15 +16,28 @@ class _PaymentState extends State<Payment> {
       padding: EdgeInsets.all(25),
       children: [
         Container(
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset('assets/NTLogo.png'),
-                Icon(Icons.person_outline_rounded,
-                    size: 45, color: Colors.yellow),
-              ],
-            )),
+          // ignore: prefer_const_literals_to_create_immutables
+          child: Row(children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back)),
+            Image.asset('assets/NTLogo.png'),
+            Padding(
+              padding: EdgeInsets.only(left: 110),
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.person_outline_rounded,
+                          size: 35, color: Colors.yellow)),
+                ],
+              ),
+            )
+          ]),
+          height: 100,
+        ),
         SizedBox(
           height: 40,
         ),
@@ -45,19 +58,15 @@ class _PaymentState extends State<Payment> {
             child: Column(
               children: [
                 Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: 35,
-                    ),
+                  Text(
+                    'GET YOUR TICKET',
+                    style: TextStyle(
+                        fontSize: 23,
+                        color: Color(0xff123456),
+                        //color: Colors.yellow[600],
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.bold),
                   ),
-                  Text('GET YOUR TICKET',
-                      style: TextStyle(
-                          fontSize: 25,
-                          color: Color(0xff123456),
-                          //color: Colors.yellow[600],
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center),
                   Text(
                     ' !',
                     style: TextStyle(
