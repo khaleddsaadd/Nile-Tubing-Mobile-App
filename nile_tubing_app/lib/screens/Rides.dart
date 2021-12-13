@@ -48,14 +48,12 @@ class _RidesState extends State<Rides> {
         Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 40), //apply padding to some sides only
-              child: Text("Nile Tubing",
+            SizedBox(height: 50,),
+             Text("Nile Tubing",
                   style: TextStyle(
                       fontSize: 50, color: Color.fromRGBO(0, 46, 92, 1)),
                   textAlign: TextAlign.center),
-            ),
+            
             Text("Rides",
                 style: TextStyle(
                     fontSize: 50, color: Color.fromRGBO(0, 46, 92, 1)),
