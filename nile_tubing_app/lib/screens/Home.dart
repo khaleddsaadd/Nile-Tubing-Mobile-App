@@ -37,12 +37,13 @@ class Home extends StatelessWidget {
          )),
               ]),
             ),
+            SizedBox(height: 80),
             Padding(
               padding:
-                  EdgeInsets.only(top: 135), //apply padding to some sides only
+                  EdgeInsets.all(30), //apply padding to some sides only
               child: Text("Go with the flow of the Nile River",
                   style: TextStyle(fontSize: 36, color: Colors.white),
-                  textAlign: TextAlign.center),
+                  textAlign: TextAlign.center ),
             ),
             Padding(
                 padding: EdgeInsets.only(top: 30),
@@ -68,7 +69,7 @@ class Home extends StatelessWidget {
                   ),
                 )),
             Padding(
-              padding: EdgeInsets.only(top: 80),
+              padding: EdgeInsets.only(top: 60),
               child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
                 mainAxisAlignment: MainAxisAlignment.center,
