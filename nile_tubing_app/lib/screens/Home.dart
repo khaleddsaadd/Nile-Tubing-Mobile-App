@@ -6,18 +6,14 @@ import 'Rides.dart';
 
 class Home extends StatelessWidget {
   // This widget is the root of your application.
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        constraints: BoxConstraints.expand(),
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/Background.jpg"),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.3), BlendMode.darken))),
-        child: ListView(
+        body: ListView(
+      children: [
+//FirstPage
+        Container(
+            child: Column(
           children: [
             Container(
               height: 100,
@@ -46,25 +42,22 @@ class Home extends StatelessWidget {
                 padding: EdgeInsets.only(top: 30),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  // decoration: BoxDecoration(color: Colors.red),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      //Align(alignment: Alignment.centerLeft,
-                      //child:
                       IconButton(
                         icon: const Icon(Icons.arrow_back_ios, size: 35),
                         color: Colors.white,
                         onPressed: () {},
                       ),
-                      //),
-//Padding(padding: EdgeInsets.only(left:315),child:
+                      
+
                       IconButton(
                         icon: const Icon(Icons.arrow_forward_ios, size: 35),
                         color: Colors.white,
                         onPressed: () {},
                       ),
-                      //)
+                      
                     ],
                   ),
                 )),
@@ -75,64 +68,125 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  //  ElevatedButton(
-                  //           style: ButtonStyle(
-                  //               backgroundColor: MaterialStateProperty.all<Color>(
-                  //                   Color(0xff123456))),
-                  //           onPressed: () {},
-                  //           child: Text('Book Now',
-                  //               style: TextStyle(
-                  //                   fontSize: 15,
-                  //                   color: Colors.white,
-                  //                   fontFamily: 'Cairo')
-                  //                   )
-                  //                   ),
+                  RaisedButton(
+                    onPressed: () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => Rides()),
+                    //   );
+                     },
+                    color: Color(0xff123456).withOpacity(0.8),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)
+                        ),
+                    child: Text("Book Now",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontFamily: 'Cairo')
+                            ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+ 
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/Background.jpg"),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.3), BlendMode.darken))),
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width),
+            
+
+//Second Page            
+            Container(decoration: new BoxDecoration(color: Colors.blue[900]),
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child:Padding(padding: const EdgeInsets.only(top: 150), 
+            child:
+            Column(children: [
+              Align(alignment:Alignment.center, 
+              child: Container(decoration:
+                   BoxDecoration(
+                    image: DecorationImage(
+                    image: AssetImage("assets/homepage1.jpeg"),
+                    fit: BoxFit.cover,
+                    )
+                    ),
+                    height: 380,
+                    width: MediaQuery.of(context).size.width),
+                    ),
+              Container(
+              child: Row(
+                // ignore: prefer_const_literals_to_create_immutables
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [GestureDetector(
+            child: Text("Click here",
+                style: TextStyle(
+                    decoration: TextDecoration.underline, color: Colors.black,fontSize: 20)),
+            onTap: () {}
+            ),
+            Icon(Icons.gesture,size: 35),],
+                )
+                ) 
+              ])
+         
+            ), 
+            ),
+             
+          
+          
+            //Last Page
+            Container(
+            decoration: new BoxDecoration(color: Colors.white),
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children:[
+             Padding(padding: const EdgeInsets.only(top:100),
+             child: Align(alignment: Alignment.center,
+             child: Text("UP COMING EVENTS",style: TextStyle(color: Colors.blue[900],fontSize: 24),),
+          )
+            ),
+            Container(child: Image.asset('assets/homepage2.jpeg'),
+            width: MediaQuery.of(context).size.width,
+            height:400 ),
+            Container(child: Row(
+                // ignore: prefer_const_literals_to_create_immutables
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                   RaisedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Rides()),
                       );
-                    },
-                    color: Color(0xff123456).withOpacity(0.8),
+                     },
+                    color: Color(0xff123456).withOpacity(1),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text("Book Now",
+                        borderRadius: BorderRadius.circular(20)
+                        ),
+                    child: Text("Check Out!",
                         style: TextStyle(
                             fontSize: 15,
                             color: Colors.white,
-                            fontFamily: 'Cairo')),
+                            fontFamily: 'Cairo')
+                            ),
                   ),
                 ],
-              ),
+              ))
+
+            ]),
             ),
-
-            /*ButtonBar( alignment: MainAxisAlignment.center,
             
-              children: [
-                ElevatedButton(
-                  child: Text("Home"),
-                  onPressed: (){},
-                ),
-
-                ElevatedButton(
-                  child: Text("Rides"),
-                  onPressed: (){},
-                ),
-
-                ElevatedButton(
-                  child: Text("Contact Us"),
-                  onPressed: (){},
-                ),
-
-                ElevatedButton(
-                  child: Text("Get Started"),
-                  onPressed: (){},
-                ),],
-            ) */
-          ],
-        ),
-      ),
+      ],
+    )
     );
   }
-}
+  }
