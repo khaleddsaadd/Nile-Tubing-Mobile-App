@@ -2,6 +2,7 @@
 // ignore_for_file: use_key_in_widget_constructors, unused_import, unused_import, duplicate_ignore, prefer_const_constructors, file_names
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/Rides.dart';
+import 'package:nile_tubing_app/screens/checkOut.dart';
 import 'Rides.dart';
 
 class Home extends StatelessWidget {
@@ -70,10 +71,10 @@ class Home extends StatelessWidget {
                 children: [
                   RaisedButton(
                     onPressed: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(builder: (context) => Rides()),
-                    //   );
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => Rides()),
+                       );
                      },
                     color: Color(0xff123456).withOpacity(0.8),
                     shape: RoundedRectangleBorder(
@@ -165,7 +166,7 @@ class Home extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Rides()),
+                        MaterialPageRoute(builder: (context) => CheckOut()),
                       );
                      },
                     color: Color(0xff123456).withOpacity(1),
