@@ -19,11 +19,16 @@ class _PaymentState extends State<Payment> {
           // ignore: prefer_const_literals_to_create_immutables
           child: Row(children: [
             IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back)),
-            Image.asset('assets/NTLogo.png'),
+              padding: EdgeInsets.zero,
+              constraints: BoxConstraints(),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back),
+            ),
+            Image.asset(
+              'assets/NTLogo.png',
+            ),
             Padding(
               padding: EdgeInsets.only(left: 110),
               child: Row(

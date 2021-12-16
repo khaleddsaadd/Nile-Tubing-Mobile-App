@@ -125,7 +125,9 @@ class PaymentFormState extends State<PaymentForm> {
             style: TextStyle(fontSize: 18, color: Colors.grey[600]),
           ),
           ListTile(
-            title: const Text('Cash Payment', style: TextStyle(fontSize: 15)),
+            title: const Text('Cash Payment',
+                style: TextStyle(
+                    height: 1, fontSize: 11.1, fontWeight: FontWeight.bold)),
             trailing: Image.asset(
               'assets/cash.jpg',
               scale: 9,
@@ -142,8 +144,13 @@ class PaymentFormState extends State<PaymentForm> {
             ),
           ),
           ListTile(
-            title: const Text('Vodafone Cash', style: TextStyle(fontSize: 15)),
-            trailing: Image.asset('assets/Vod.jpg', scale: 15),
+            title: const Text('Vodafone Cash',
+                style: TextStyle(
+                    height: 1, fontSize: 11.1, fontWeight: FontWeight.bold)),
+            trailing: Image.asset(
+              'assets/Vod.jpg',
+              scale: 20.5,
+            ),
             leading: Radio(
               value: methods.vodafone,
               groupValue: _method,
