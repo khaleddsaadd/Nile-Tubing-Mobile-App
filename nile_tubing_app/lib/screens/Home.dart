@@ -1,7 +1,6 @@
 // ignore: avoid_web_libraries_in_flutter
 // ignore_for_file: use_key_in_widget_constructors, unused_import, unused_import, duplicate_ignore, prefer_const_constructors, file_names
 import 'package:flutter/material.dart';
-import 'package:nile_tubing_app/screens/Drawer.dart';
 import 'package:nile_tubing_app/screens/Rides.dart';
 import 'package:nile_tubing_app/screens/checkOut.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
@@ -12,10 +11,75 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
-        body:
-        
-         ListView(
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            children: [
+              Container(
+                height: 80,
+                child: DrawerHeader(
+                  child: Padding(
+                      padding: EdgeInsets.only(top: 12),
+                      child: Text('Nile Tubing')),
+                  decoration: BoxDecoration(color: Colors.yellow[700]),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.home),
+                title: Transform.translate(
+                  offset: Offset(-16, 0),
+                  child: Text('Home'),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  (Icons.donut_small_outlined),
+                ),
+                title: Transform.translate(
+                  offset: Offset(-16, 0),
+                  child: Text('Rides'),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Rides()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: const Icon((Icons.phone)),
+                title: Transform.translate(
+                  offset: Offset(-16, 0),
+                  child: Text('Contact us'),
+                ),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                leading: const Icon((Icons.logout_outlined)),
+                title: Transform.translate(
+                  offset: Offset(-16, 0),
+                  child: Text('Log Out'),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignIn()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+        body: ListView(
           children: [
 //FirstPage
             Container(
@@ -26,16 +90,19 @@ class Home extends StatelessWidget {
                       child: Row(children: [
                         Image.asset('assets/NTLogo.png'),
                         SizedBox(
-                          width: 180,
+                          width: 163,
                         ),
-                        Icon(Icons.local_grocery_store,
-                            size: 35, color: Color(0xff123456)),
-                        SizedBox(
-                          width: 15,
+                        IconButton(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CheckOut())),
+                          icon: Icon(Icons.local_grocery_store,
+                              size: 35, color: Color(0xff123456)),
                         ),
                         IconButton(
                             icon: new Icon(Icons.person_outline_rounded,
-                                size: 35, color: Colors.yellow),
+                                size: 35, color: Colors.yellow[700]),
                             onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
