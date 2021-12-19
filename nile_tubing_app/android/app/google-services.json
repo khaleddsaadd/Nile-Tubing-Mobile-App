@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843523157131",
+    "project_id": "niletubingdb",
+    "storage_bucket": "niletubingdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843523157131:android:de626041bbaa3171a5f88e",
+        "android_client_info": {
+          "package_name": "com.example.nile_tubing_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843523157131-g0e1ph4bmmvmmm8slikbpordlg1suhdf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN67qC4nolGErY5dg7V3FXfiWchJTjAZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843523157131-g0e1ph4bmmvmmm8slikbpordlg1suhdf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

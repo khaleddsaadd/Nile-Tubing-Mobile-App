@@ -5,6 +5,8 @@ import 'package:nile_tubing_app/screens/Rides.dart';
 import 'package:nile_tubing_app/screens/checkOut.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
 import 'Rides.dart';
+import 'package:nile_tubing_app/services/authentication_services.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   // This widget is the root of your application.
@@ -70,10 +72,7 @@ class Home extends StatelessWidget {
                   child: Text('Log Out'),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignIn()),
-                  );
+                  context.read<AuthenticationService>().signOut();
                 },
               ),
             ],
