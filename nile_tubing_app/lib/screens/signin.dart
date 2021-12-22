@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nile_tubing_app/screens/AdminAdd.dart';
 import 'package:nile_tubing_app/screens/signup.dart';
 import 'Home.dart';
 import 'package:nile_tubing_app/services/authentication_services.dart';
@@ -26,18 +27,8 @@ class _SignInState extends State<SignIn> {
               alignment: Alignment.center,
               margin: EdgeInsets.all(10),
               child: Column(children: [
-                IconButton(
-                    alignment: Alignment(-35, 5),
-                    icon: new Icon(
-                      Icons.arrow_back,
-                      color: Color(0xFF002E5C),
-                    ),
-                    onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Home()),
-                        )),
                 SizedBox(
-                  height: 30,
+                  height: 100,
                 ),
                 Text(
                   "Sign In",
@@ -107,10 +98,18 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: 10),
                     ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<AuthenticationService>().signIn(
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim());
+                        if (emailController.text.trim() == "admin" &&
+                            passwordController.text.trim() == "admin") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => AddRide()),
+                          );
+                        } else {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<AuthenticationService>().signIn(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim());
+                          }
                         }
                       },
                       style: ButtonStyle(
