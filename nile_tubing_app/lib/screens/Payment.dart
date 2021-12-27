@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/drawer.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
-import '../model/paymentForm.dart';
+import 'paymentForm.dart';
 import '../modules/home_widget.dart';
 import 'Rides.dart';
 

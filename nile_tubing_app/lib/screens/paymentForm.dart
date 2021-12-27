@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../model/enums.dart';
-import '../model/methods.dart';
+//import '../model/enums.dart';
+//import '../model/methods.dart';
+import '../model/paymentmodel.dart';
 import 'package:nile_tubing_app/screens/Ticket.dart';
 
 // Create a Form widget.

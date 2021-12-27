@@ -1,1 +1,0 @@
-enum methods { cach, vodafone }

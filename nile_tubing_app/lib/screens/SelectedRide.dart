@@ -111,7 +111,7 @@ class SelectedRide extends StatelessWidget {
                       SizedBox(
                         height: 25,
                       ),
-                      Text('Person',
+                      Text('Capacity',
                           style: TextStyle(
                               fontSize: 25,
                               color: Color(0xff123456),
