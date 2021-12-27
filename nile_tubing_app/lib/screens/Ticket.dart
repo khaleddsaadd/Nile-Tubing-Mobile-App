@@ -3,79 +3,13 @@ import 'package:nile_tubing_app/screens/signin.dart';
 import 'Home.dart';
 import 'package:flutter/services.dart';
 import 'Rides.dart';
+import 'drawer.dart';
 
 class Ticket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            children: [
-              Container(
-                height: 80,
-                child: DrawerHeader(
-                  child: Padding(
-                      padding: EdgeInsets.only(top: 12),
-                      child: Text('Nile Tubing')),
-                  decoration: BoxDecoration(color: Colors.yellow[700]),
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.home),
-                title: Transform.translate(
-                  offset: Offset(-16, 0),
-                  child: Text('Home'),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Home()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon(
-                  (Icons.donut_small_outlined),
-                ),
-                title: Transform.translate(
-                  offset: Offset(-16, 0),
-                  child: Text('Rides'),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Rides()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: const Icon((Icons.phone)),
-                title: Transform.translate(
-                  offset: Offset(-16, 0),
-                  child: Text('Contact us'),
-                ),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              ListTile(
-                leading: const Icon((Icons.logout_outlined)),
-                title: Transform.translate(
-                  offset: Offset(-16, 0),
-                  child: Text('Log Out'),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignIn()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: drawer(),
         body: ListView(children: [
           // ignore: sized_box_for_whitespace
           Container(
