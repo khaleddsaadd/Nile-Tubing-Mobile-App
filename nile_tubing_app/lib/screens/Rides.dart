@@ -6,6 +6,7 @@ import 'package:nile_tubing_app/screens/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nile_tubing_app/model/user_model.dart';
+import 'package:nile_tubing_app/model/rides.dart';
 import 'Home.dart';
 import 'checkOut.dart';
 import 'drawer.dart';
@@ -85,14 +86,20 @@ class _RidesState extends State<Rides> {
                     child: CircularProgressIndicator(),
                   );
                 }
+
                 return Column(
                   children: snapshot.data!.docs.map((document) {
+                    ridesmodel ridesM = ridesmodel(
+                        rideName: document['Name'],
+                        ridePrice: int.parse(document['Price']),
+                        rideImage: document['Image']);
+
                     return Column(
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
                               top: 25), //apply padding to some sides only
-                          child: Text(document["Name"],
+                          child: Text("${ridesM.rideName} ",
                               style:
                                   TextStyle(fontSize: 30, color: Colors.black),
                               textAlign: TextAlign.center),
@@ -104,7 +111,7 @@ class _RidesState extends State<Rides> {
                         Padding(
                           padding: EdgeInsets.only(
                               top: 25), //apply padding to some sides only
-                          child: Text("250 EGP",
+                          child: Text("${ridesM.ridePrice} EGP",
                               style:
                                   TextStyle(fontSize: 20, color: Colors.black),
                               textAlign: TextAlign.center),
