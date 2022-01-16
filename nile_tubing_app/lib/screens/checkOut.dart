@@ -10,9 +10,15 @@ import 'package:nile_tubing_app/screens/signin.dart';
 class CheckOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+  var TripName = "Abohmeed"; 
+  var TripDate = "24/10/2000";
+  var Total    = 3890;
+  var GrandTotal= Total;
+
     return Scaffold(
       drawer: drawer(),
-      body: ListView(children: [
+      body:
+      ListView(children: [
         Container(
           // ignore: prefer_const_literals_to_create_immutables
           child: Row(children: [
@@ -96,7 +102,7 @@ class CheckOut extends StatelessWidget {
                                     height: 40,
                                     child: Align(
                                       alignment: Alignment.center,
-                                      child: Text("TripName",
+                                      child: Text(TripName,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 22.0)),
@@ -110,7 +116,7 @@ class CheckOut extends StatelessWidget {
                                     height: 30,
                                     child: Align(
                                       alignment: Alignment.center,
-                                      child: Text("TripDate",
+                                      child: Text(TripDate,
                                           style: TextStyle(fontSize: 18.0)),
                                     )))),
                         Container(
@@ -166,7 +172,7 @@ class CheckOut extends StatelessWidget {
                                   padding: const EdgeInsets.only(right: 10),
                                   child: Container(
                                       child: Container(
-                                    child: Text("Total:250"),
+                                    child: Text(Total.toString()+" EGP"),
                                   )))
                             ]))
                       ]))
@@ -178,7 +184,7 @@ class CheckOut extends StatelessWidget {
             height: 80,
             child: Align(
               alignment: Alignment.center,
-              child: Text("Sub Total: 300 USD",
+              child: Text(GrandTotal.toString()+" EGP",
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
             ),
           ),
