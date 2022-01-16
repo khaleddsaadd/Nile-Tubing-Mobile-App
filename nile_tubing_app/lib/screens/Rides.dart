@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/SelectedRide.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nile_tubing_app/model/user_model.dart';
 import 'Home.dart';
 import 'checkOut.dart';
 import 'drawer.dart';
@@ -21,7 +23,6 @@ class _RidesState extends State<Rides> {
         drawer: drawer(),
         body: ListView(
           children: [
-            // ignore: sized_box_for_whitespace
             Container(
               // ignore: prefer_const_literals_to_create_immutables
               child: Row(children: [
@@ -74,128 +75,72 @@ class _RidesState extends State<Rides> {
                 Image.asset('assets/Rides.png'),
               ],
             ),
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 25), //apply padding to some sides only
-              child: Text("Single Tubing Ride",
-                  style: TextStyle(fontSize: 30, color: Colors.black),
-                  textAlign: TextAlign.center),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Image.asset('assets/s.jpeg'),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 25), //apply padding to some sides only
-              child: Text("200 EGP",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                  textAlign: TextAlign.center),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 15),
-              child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SelectedRide()),
-                        );
-                      },
-                      child: Text('Book Now')),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: FavoriteWidget(),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 25), //apply padding to some sides only
-              child: Text("Couple Tubing Ride",
-                  style: TextStyle(fontSize: 30, color: Colors.black),
-                  textAlign: TextAlign.center),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Image.asset('assets/couple.jpg'),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 25), //apply padding to some sides only
-              child: Text("250 EGP",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                  textAlign: TextAlign.center),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 15),
-              child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SelectedRide()),
-                        );
-                      },
-                      child: Text('Book Now')),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: FavoriteWidget(),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 25), //apply padding to some sides only
-              child: Text("Group Tubing Ride",
-                  style: TextStyle(fontSize: 30, color: Colors.black),
-                  textAlign: TextAlign.center),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Image.asset('assets/group.jpg'),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(top: 25), //apply padding to some sides only
-              child: Text("350 EGP",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                  textAlign: TextAlign.center),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 15),
-              child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SelectedRide()),
-                        );
-                      },
-                      child: Text('Book Now')),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: FavoriteWidget(),
+            StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection('Rides').snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return Column(
+                  children: snapshot.data!.docs.map((document) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: 25), //apply padding to some sides only
+                          child: Text(document["Name"],
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.black),
+                              textAlign: TextAlign.center),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Image.asset('assets/${document['Image']}'),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: 25), //apply padding to some sides only
+                          child: Text("250 EGP",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                              textAlign: TextAlign.center),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 15),
+                          child: Row(
+                            // ignore: prefer_const_literals_to_create_immutables
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () {
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //       builder: (context) => SelectedRide()),
+                                    // );
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SelectedRide(ID: document.id)));
+                                  },
+                                  child: Text('Book Now')),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: FavoriteWidget(),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                );
+              },
             ),
           ],
         ));

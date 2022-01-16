@@ -1,13 +1,19 @@
 class Usermodel {
+  final String ID;
   final String Firstname;
   final String Lastname;
   final String Email;
   final int Mobile;
 
-  Usermodel({
-    required this.Firstname,
-    required this.Lastname,
-    required this.Email,
-    required this.Mobile,
-  });
+  Usermodel(
+    this.ID,
+    this.Firstname,
+    this.Lastname,
+    this.Email,
+    this.Mobile,
+  );
+
+  String getid() {
+    return this.ID;
+  }
 }

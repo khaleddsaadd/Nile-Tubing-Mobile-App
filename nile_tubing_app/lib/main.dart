@@ -7,10 +7,11 @@ import 'services/authentication_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/loading_screen.dart';
 import 'screens/Home.dart';
+import 'package:nile_tubing_app/model/user_model.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -52,6 +53,7 @@ class Authenticationwrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User?>();
     if (firebaseUser != null) {
+      print(firebaseUser.uid);
       return Home();
     }
     return SignIn();

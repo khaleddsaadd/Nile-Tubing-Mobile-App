@@ -7,6 +7,8 @@ import 'Rides.dart';
 import 'drawer.dart';
 
 class SelectedRide extends StatelessWidget {
+  String? ID;
+  SelectedRide({this.ID});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +16,7 @@ class SelectedRide extends StatelessWidget {
         body: ListView(
           padding: EdgeInsets.all(15),
           children: [
+            Text("$ID"),
             Container(
               // ignore: prefer_const_literals_to_create_immutables
               child: Row(children: [
