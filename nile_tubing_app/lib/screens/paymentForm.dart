@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-//import '../model/enums.dart';
-//import '../model/methods.dart';
+import '../model/enums.dart';
 import '../model/paymentmodel.dart';
 import 'package:nile_tubing_app/screens/Ticket.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Create a Form widget.
 class PaymentForm extends StatefulWidget {
@@ -13,7 +14,11 @@ class PaymentForm extends StatefulWidget {
 }
 
 class PaymentFormState extends State<PaymentForm> {
+  late Paymentmodel paymentmodel;
   final _formKey = GlobalKey<FormState>();
+  final NameController = TextEditingController();
+  final EmailController = TextEditingController();
+  final MobileController = TextEditingController();
   genders _gender = genders.male;
   methods _method = methods.cach;
 
@@ -34,6 +39,7 @@ class PaymentFormState extends State<PaymentForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextFormField(
+            controller: NameController,
             decoration: const InputDecoration(
               icon: const Icon(
                 Icons.person,
@@ -51,6 +57,7 @@ class PaymentFormState extends State<PaymentForm> {
             },
           ),
           TextFormField(
+            controller: MobileController,
             decoration: const InputDecoration(
               icon: const Icon(Icons.phone, color: Color(0xff123456)),
               hintText: 'Enter a phone number',
@@ -68,6 +75,8 @@ class PaymentFormState extends State<PaymentForm> {
             },
           ),
           TextFormField(
+            controller: EmailController,
+            keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
               icon: const Icon(Icons.email_rounded, color: Color(0xff123456)),
               hintText: 'Enter your E-mail',
@@ -163,6 +172,53 @@ class PaymentFormState extends State<PaymentForm> {
               activeColor: Colors.yellow.shade700,
             ),
           ),
+          new Container(
+              padding: const EdgeInsets.only(top: 40.0),
+              alignment: Alignment.centerRight,
+              child: new ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Color(0xff123456)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                    )),
+                child: Text('Pay',
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontFamily: 'Cairo')),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    paymentmodel = Paymentmodel(
+                        Username: NameController.text.trim(),
+                        Useremail: EmailController.text.trim(),
+                        Userphone: MobileController.text.trim(),
+                        gender: _gender,
+                        method: _method);
+
+                    FirebaseFirestore.instance.collection('Payment').add({
+                      'Name': '${paymentmodel.Username}',
+                      'Mail': '${paymentmodel.Useremail}',
+                      'Mobile': '${paymentmodel.Userphone}',
+                      'gender': '${paymentmodel.gender}',
+                      'method': '${paymentmodel.method}'
+                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Ticket()),
+                    );
+                  }
+                },
+              )),
+        ],
+      ),
+    );
+  }
+}
+
+
           /*  Center(
             child: Image.asset(
               'assets/Vod.jpg',
@@ -190,34 +246,3 @@ class PaymentFormState extends State<PaymentForm> {
             ),
           ),
           */
-          new Container(
-              padding: const EdgeInsets.only(top: 40.0),
-              alignment: Alignment.centerRight,
-              child: new ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xff123456)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                    )),
-                child: Text('Pay',
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontFamily: 'Cairo')),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Ticket()),
-                    );
-                  }
-                },
-              )),
-        ],
-      ),
-    );
-  }
-}
