@@ -94,7 +94,7 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(height: 20),
                 TextFormField(
                   controller: myControllerM,
-                  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  //inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
