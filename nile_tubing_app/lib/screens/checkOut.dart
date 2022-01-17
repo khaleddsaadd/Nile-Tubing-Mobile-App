@@ -8,17 +8,18 @@ import 'package:nile_tubing_app/screens/drawer.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
 
 class CheckOut extends StatelessWidget {
+  String? RideName;
+  String? RidePrice;
+  CheckOut({this.RideName, this.RidePrice});
   @override
   Widget build(BuildContext context) {
-  var TripName = "Abohmeed"; 
-  var TripDate = "24/10/2000";
-  var Total    = 3890;
-  var GrandTotal= Total;
+    var TripDate = "24/10/2000";
+    var Total = 3890;
+    var GrandTotal = Total;
 
     return Scaffold(
       drawer: drawer(),
-      body:
-      ListView(children: [
+      body: ListView(children: [
         Container(
           // ignore: prefer_const_literals_to_create_immutables
           child: Row(children: [
@@ -102,7 +103,7 @@ class CheckOut extends StatelessWidget {
                                     height: 40,
                                     child: Align(
                                       alignment: Alignment.center,
-                                      child: Text(TripName,
+                                      child: Text(RideName!,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 22.0)),
@@ -172,7 +173,7 @@ class CheckOut extends StatelessWidget {
                                   padding: const EdgeInsets.only(right: 10),
                                   child: Container(
                                       child: Container(
-                                    child: Text(Total.toString()+" EGP"),
+                                    child: Text(RidePrice!.toString() + " EGP"),
                                   )))
                             ]))
                       ]))
@@ -184,7 +185,7 @@ class CheckOut extends StatelessWidget {
             height: 80,
             child: Align(
               alignment: Alignment.center,
-              child: Text(GrandTotal.toString()+" EGP",
+              child: Text(RidePrice.toString() + " EGP",
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
             ),
           ),
