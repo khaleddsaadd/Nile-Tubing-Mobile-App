@@ -20,7 +20,7 @@ class PaymentFormState extends State<PaymentForm> {
   final EmailController = TextEditingController();
   final MobileController = TextEditingController();
   genders _gender = genders.male;
-  methods _method = methods.cach;
+  methods _method = methods.vodafone;
 
 /*
   String dropdownvalue = 'Gender';
