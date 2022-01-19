@@ -221,6 +221,10 @@ class _AddRideState extends State<AddRide> {
                       // 'Price': '${rides.rideCapacity}',
                       'Capacity': '${rides.rideCapacity}',
                     });
+                    FirebaseFirestore.instance.
+                     collection('tags').
+                     document(tag).
+                     set(data, SetOptions(merge: true))
                       };
                         } ),
                     SizedBox(height: 10),
