@@ -201,7 +201,7 @@ class _AddRideState extends State<AddRide> {
                             MaterialStateProperty.all(Colors.green[700]),
                       ),
                       child: Text(
-                        'Add Ride',
+                        'Save',
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 20,
