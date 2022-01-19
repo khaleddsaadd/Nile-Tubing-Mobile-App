@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nile_tubing_app/screens/AdminAdd.dart';
+import 'package:nile_tubing_app/screens/add_ride.dart';
 import 'package:nile_tubing_app/screens/signup.dart';
 import 'Home.dart';
 import 'package:nile_tubing_app/services/authentication_services.dart';

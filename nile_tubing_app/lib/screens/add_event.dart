@@ -21,10 +21,10 @@ class _AddRideState extends State<AddRide> {
   bool _isObscure = true;
   late ridesmodel rides;
   final _formKey = GlobalKey<FormState>();
-  final RideTController = TextEditingController();
+  final EventNController = TextEditingController();
   final PriceController = TextEditingController();
   final DateController = TextEditingController();
-  final RideDController = TextEditingController();
+  final EventDController = TextEditingController();
   final CapacityController = TextEditingController();
 
   @override
@@ -57,7 +57,7 @@ class _AddRideState extends State<AddRide> {
                 ),
               
                 Text(
-                  "Add Ride",
+                  "Add Event",
                   style: TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.bold,
@@ -67,26 +67,8 @@ class _AddRideState extends State<AddRide> {
           Image.asset('assets/Add.png'),
           SizedBox(height: 20),
 
-                //  StreamBuilder<QuerySnapshot>(
-                //   stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
-                //   builder: (context, snapshot) {
-                //     if (!snapshot.hasData)
-                //       const Text("Loading.....");
-                //     else {
-                //       List<DropdownMenuItem> currencyItems = [];
-                //       for (int i = 0; i < snapshot.data.documents.length; i++) {
-                //         DocumentSnapshot snap = snapshot.data.documents[i];
-                //         currencyItems.add(
-                //           DropdownMenuItem(
-                //             child: Text(
-                //               snap.documentID,
-                //               style: TextStyle(color: Color(0xff11b719)),
-                //             ),
-                //             value: "${snap.documentID}",
-                //           ),
-                //         );}}}),
                  TextFormField(
-                  controller: RideDController,
+                  controller: EventNController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter some text';
@@ -130,44 +112,27 @@ class _AddRideState extends State<AddRide> {
 
                 ),
                 const SizedBox(height: 10),
-                //  StreamBuilder<QuerySnapshot>(
-                //   stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
-                //   builder: (context, snapshot) {
-                //     if (!snapshot.hasData)
-                //       const Text("Loading.....");
-                //     else {
-                //       List<DropdownMenuItem> currencyItems = [];
-                //       for (int i = 0; i < snapshot.data.documents.length; i++) {
-                //         DocumentSnapshot snap = snapshot.data.documents[i];
-                //         currencyItems.add(
-                //           DropdownMenuItem(
-                //             child: Text(
-                //               snap.documentID,
-                //               style: TextStyle(color: Color(0xff11b719)),
-                //             ),
-                //             value: "${snap.documentID}",
-                //           ),
-                //         );}}}),
-                // TextFormField(
-                //   controller: DateController,
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return 'Please enter some text';
-                //     }
-                //     return null;
-                //   },
-                //   keyboardType: TextInputType.emailAddress,
-                //   decoration: InputDecoration(
-                //     filled: true,
-                //     fillColor: Colors.white,
-                //     border: OutlineInputBorder(
-                //         borderSide: BorderSide.none,
-                //         borderRadius: BorderRadius.circular(50)),
-                //     labelText: 'Date',
-                //     hintText: "Date",
-                //     contentPadding: EdgeInsets.all(20.0),
-                //   ),
-                // ),
+               
+                TextFormField(
+                  controller: DateController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50)),
+                    labelText: 'Date',
+                    hintText: "Date",
+                    contentPadding: EdgeInsets.all(20.0),
+                  ),
+                ),
                  const SizedBox(height: 10),
                 TextFormField(
                   controller: CapacityController,
@@ -216,17 +181,17 @@ class _AddRideState extends State<AddRide> {
                         
                       );
 
-                    FirebaseFirestore.instance.collection('Arides').add({
+                    FirebaseFirestore.instance.collection('Events').add({
                       // 'Name': '${rides.rideType}',
                       // 'Price': '${rides.rideCapacity}',
-                      'Capacity': '${rides.rideCapacity}',
+                      // 'Capacity': '${rides.rideCapacity}',
                     });
-                    FirebaseFirestore.instance.
-                     collection('tags').
-                     document(tag).
-                     set(data, SetOptions(merge: true))
-                      };
-                        } ),
+                    // FirebaseFirestore.instance.
+                    //  collection('tags').
+                    //  document(tag).
+                    //  set(data, SetOptions(merge: true))
+                    //   };
+                        } }),
                     SizedBox(height: 10),
                     Row(
                       children: [
