@@ -24,6 +24,7 @@ class _AddRideState extends State<AddRide> {
   final RideTController = TextEditingController();
   final PriceController = TextEditingController();
   final DateController = TextEditingController();
+  final RideDController = TextEditingController();
   final CapacityController = TextEditingController();
 
   @override
@@ -66,8 +67,26 @@ class _AddRideState extends State<AddRide> {
           Image.asset('assets/Add.png'),
           SizedBox(height: 20),
 
-                TextFormField(
-                  controller: RideTController,
+                 StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData)
+                      const Text("Loading.....");
+                    else {
+                      List<DropdownMenuItem> currencyItems = [];
+                      for (int i = 0; i < snapshot.data.documents.length; i++) {
+                        DocumentSnapshot snap = snapshot.data.documents[i];
+                        currencyItems.add(
+                          DropdownMenuItem(
+                            child: Text(
+                              snap.documentID,
+                              style: TextStyle(color: Color(0xff11b719)),
+                            ),
+                            value: "${snap.documentID}",
+                          ),
+                        );}}}),
+                 TextFormField(
+                  controller: RideDController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter some text';
@@ -81,8 +100,8 @@ class _AddRideState extends State<AddRide> {
                     border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(50)),
-                    labelText: 'Ride Type',
-                    hintText: "Ride Type",
+                    labelText: 'Ride Description',
+                    hintText: "Ride Description",
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                 ),
@@ -109,38 +128,46 @@ class _AddRideState extends State<AddRide> {
                   ),
                   obscureText: true,
 
-                  //  suffixIcon: IconButton(
-                  //   icon: Icon(
-                  //     _isObscure ? Icons.visibility : Icons.visibility_off,
-                  //   ),
-                  //   onPressed: () {
-                  //     setState(() {
-                  //       _isObscure = !_isObscure;
-                  //     });
-                  //   },
-                  // ),
                 ),
                 const SizedBox(height: 10),
-                TextFormField(
-                  controller: DateController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(50)),
-                    labelText: 'Date',
-                    hintText: "Date",
-                    contentPadding: EdgeInsets.all(20.0),
-                  ),
-                ),
+                 StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData)
+                      const Text("Loading.....");
+                    else {
+                      List<DropdownMenuItem> currencyItems = [];
+                      for (int i = 0; i < snapshot.data.documents.length; i++) {
+                        DocumentSnapshot snap = snapshot.data.documents[i];
+                        currencyItems.add(
+                          DropdownMenuItem(
+                            child: Text(
+                              snap.documentID,
+                              style: TextStyle(color: Color(0xff11b719)),
+                            ),
+                            value: "${snap.documentID}",
+                          ),
+                        );}}}),
+                // TextFormField(
+                //   controller: DateController,
+                //   validator: (value) {
+                //     if (value == null || value.isEmpty) {
+                //       return 'Please enter some text';
+                //     }
+                //     return null;
+                //   },
+                //   keyboardType: TextInputType.emailAddress,
+                //   decoration: InputDecoration(
+                //     filled: true,
+                //     fillColor: Colors.white,
+                //     border: OutlineInputBorder(
+                //         borderSide: BorderSide.none,
+                //         borderRadius: BorderRadius.circular(50)),
+                //     labelText: 'Date',
+                //     hintText: "Date",
+                //     contentPadding: EdgeInsets.all(20.0),
+                //   ),
+                // ),
                  const SizedBox(height: 10),
                 TextFormField(
                   controller: CapacityController,
