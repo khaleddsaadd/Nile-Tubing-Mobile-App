@@ -135,11 +135,11 @@ class _SelectedRideState extends State<SelectedRide> {
                                         fontFamily: 'Cairo'),
                                     textAlign: TextAlign.center),
                                 SizedBox(
-                                  height: 10,
+                                  height: 5,
                                 ),
                                 Text('Per person',
                                     style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 13,
                                       color: Color(0xff123456),
                                       fontFamily: 'Cairo',
                                     ),
@@ -231,7 +231,7 @@ class _SelectedRideState extends State<SelectedRide> {
                                       child: Text('Add to cart',
                                           style: TextStyle(
                                               fontSize: 15,
-                                              color: Colors.yellow,
+                                              color: Colors.yellow[400],
                                               fontFamily: 'Cairo'))),
                                   ElevatedButton(
                                       style: ButtonStyle(
