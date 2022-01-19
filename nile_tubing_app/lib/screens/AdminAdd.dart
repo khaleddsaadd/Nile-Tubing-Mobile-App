@@ -19,7 +19,7 @@ class AddRide extends StatefulWidget {
 
 class _AddRideState extends State<AddRide> {
   bool _isObscure = true;
-  late ridesmodel rmodel;
+  late ridesmodel rides;
   final _formKey = GlobalKey<FormState>();
   final RideTController = TextEditingController();
   final PriceController = TextEditingController();
@@ -67,24 +67,24 @@ class _AddRideState extends State<AddRide> {
           Image.asset('assets/Add.png'),
           SizedBox(height: 20),
 
-                 StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData)
-                      const Text("Loading.....");
-                    else {
-                      List<DropdownMenuItem> currencyItems = [];
-                      for (int i = 0; i < snapshot.data.documents.length; i++) {
-                        DocumentSnapshot snap = snapshot.data.documents[i];
-                        currencyItems.add(
-                          DropdownMenuItem(
-                            child: Text(
-                              snap.documentID,
-                              style: TextStyle(color: Color(0xff11b719)),
-                            ),
-                            value: "${snap.documentID}",
-                          ),
-                        );}}}),
+                //  StreamBuilder<QuerySnapshot>(
+                //   stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
+                //   builder: (context, snapshot) {
+                //     if (!snapshot.hasData)
+                //       const Text("Loading.....");
+                //     else {
+                //       List<DropdownMenuItem> currencyItems = [];
+                //       for (int i = 0; i < snapshot.data.documents.length; i++) {
+                //         DocumentSnapshot snap = snapshot.data.documents[i];
+                //         currencyItems.add(
+                //           DropdownMenuItem(
+                //             child: Text(
+                //               snap.documentID,
+                //               style: TextStyle(color: Color(0xff11b719)),
+                //             ),
+                //             value: "${snap.documentID}",
+                //           ),
+                //         );}}}),
                  TextFormField(
                   controller: RideDController,
                   validator: (value) {
@@ -130,24 +130,24 @@ class _AddRideState extends State<AddRide> {
 
                 ),
                 const SizedBox(height: 10),
-                 StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData)
-                      const Text("Loading.....");
-                    else {
-                      List<DropdownMenuItem> currencyItems = [];
-                      for (int i = 0; i < snapshot.data.documents.length; i++) {
-                        DocumentSnapshot snap = snapshot.data.documents[i];
-                        currencyItems.add(
-                          DropdownMenuItem(
-                            child: Text(
-                              snap.documentID,
-                              style: TextStyle(color: Color(0xff11b719)),
-                            ),
-                            value: "${snap.documentID}",
-                          ),
-                        );}}}),
+                //  StreamBuilder<QuerySnapshot>(
+                //   stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
+                //   builder: (context, snapshot) {
+                //     if (!snapshot.hasData)
+                //       const Text("Loading.....");
+                //     else {
+                //       List<DropdownMenuItem> currencyItems = [];
+                //       for (int i = 0; i < snapshot.data.documents.length; i++) {
+                //         DocumentSnapshot snap = snapshot.data.documents[i];
+                //         currencyItems.add(
+                //           DropdownMenuItem(
+                //             child: Text(
+                //               snap.documentID,
+                //               style: TextStyle(color: Color(0xff11b719)),
+                //             ),
+                //             value: "${snap.documentID}",
+                //           ),
+                //         );}}}),
                 // TextFormField(
                 //   controller: DateController,
                 //   validator: (value) {
@@ -209,17 +209,17 @@ class _AddRideState extends State<AddRide> {
                       ),
                        onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        rmodel = ridesmodel(
-                        rideType: RideTController.text.trim(),
+                        rides = ridesmodel(
+                        // rideType: RideTController.text.trim(),
                         // ridePrice: PriceController.i.trim(),
                         rideCapacity: CapacityController.text.trim(),
                         
                       );
 
-                    FirebaseFirestore.instance.collection('Rides').add({
-                      'Name': '${rmodel.rideType}',
-                      'Price': '${rmodel.rideCapacity}',
-                      
+                    FirebaseFirestore.instance.collection('Arides').add({
+                      // 'Name': '${rides.rideType}',
+                      // 'Price': '${rides.rideCapacity}',
+                      'Capacity': '${rides.rideCapacity}',
                     });
                       };
                         } ),
