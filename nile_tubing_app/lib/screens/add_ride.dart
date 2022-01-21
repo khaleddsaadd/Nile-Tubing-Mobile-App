@@ -20,7 +20,12 @@ class AddRide extends StatefulWidget {
 class _AddRideState extends State<AddRide> {
   bool _isObscure = true;
   late ridesmodel rides;
+
+  List<String> _accountType = <String>[];
+    
+  var selectedType;
   final _formKey = GlobalKey<FormState>();
+  final RideNController = TextEditingController();
   final RideTController = TextEditingController();
   final PriceController = TextEditingController();
   final DateController = TextEditingController();
@@ -38,7 +43,6 @@ class _AddRideState extends State<AddRide> {
               alignment: Alignment.center,
               margin: EdgeInsets.all(10),
               child: Column(children: [
-              
                 // IconButton(
                 //     alignment: Alignment(-35, 5),
                 //     icon: new Icon(
@@ -67,24 +71,82 @@ class _AddRideState extends State<AddRide> {
           Image.asset('assets/Add.png'),
           SizedBox(height: 20),
 
-                //  StreamBuilder<QuerySnapshot>(
-                //   stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
-                //   builder: (context, snapshot) {
-                //     if (!snapshot.hasData)
-                //       const Text("Loading.....");
-                //     else {
-                //       List<DropdownMenuItem> currencyItems = [];
-                //       for (int i = 0; i < snapshot.data.documents.length; i++) {
-                //         DocumentSnapshot snap = snapshot.data.documents[i];
-                //         currencyItems.add(
-                //           DropdownMenuItem(
-                //             child: Text(
-                //               snap.documentID,
-                //               style: TextStyle(color: Color(0xff11b719)),
-                //             ),
-                //             value: "${snap.documentID}",
-                //           ),
-                //         );}}}),
+          StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData){
+                      const Text("Loading.....");
+                    }
+                    else {
+
+                      _accountType.clear();
+                      for (int i = 0; i < snapshot.data!.docs.length; i++)
+                      {   DocumentSnapshot snap = snapshot.data!.docs[i];
+                        _accountType.add(snap.id);
+                        
+                      }
+
+                     return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                         DropdownButton( 
+                    items: _accountType
+                        .map((value) => DropdownMenuItem(
+                              child: Text(
+                                value,
+                                style: TextStyle(color: Color(0xFF002E5C)),
+                              ),
+                              value: value,
+                            ))
+                        .toList(),
+                   onChanged: (ridetype) {
+                              final snackBar = SnackBar(
+                                content: Text(
+                                  'Selected Type is $ridetype',
+                                  style: TextStyle(color: Color(0xff11b719)),
+                                ),
+                              );
+                              Scaffold.of(context).showSnackBar(snackBar);
+                              setState(() {
+                                selectedType = ridetype;
+                              });
+                            },
+                    value: selectedType,
+                    isExpanded: false,
+                    hint: Text(
+                      'Choose Ride Type',
+                      style: TextStyle(color: Color(0xFF002E5C)),
+                    ),
+                  )
+                ],
+              
+                        
+                      );
+                    } return const Text("Loading.....");
+                  }),
+                 const SizedBox(height: 30),
+                  TextFormField(
+                  controller: RideNController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  // keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50)),
+                    labelText: 'Ride Name',
+                    hintText: "Ride Name",
+                    contentPadding: EdgeInsets.all(20.0),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                
                  TextFormField(
                   controller: RideDController,
                   validator: (value) {
@@ -115,7 +177,7 @@ class _AddRideState extends State<AddRide> {
                     }
                     return null;
                   },
-                  keyboardType: TextInputType.visiblePassword,
+                  // keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -210,23 +272,23 @@ class _AddRideState extends State<AddRide> {
                        onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         rides = ridesmodel(
-                        // rideType: RideTController.text.trim(),
-                        // ridePrice: PriceController.i.trim(),
-                        rideCapacity: CapacityController.text.trim(),
+                        rideName: RideNController.text.trim(),
+                        rideType: RideDController.text.trim(),
+                        ridePrice: int.parse(PriceController.text.trim()),
+                        // rideCapacity: CapacityController.text.trim(),
                         
                       );
 
-                    FirebaseFirestore.instance.collection('Arides').add({
-                      // 'Name': '${rides.rideType}',
-                      // 'Price': '${rides.rideCapacity}',
-                      'Capacity': '${rides.rideCapacity}',
-                    });
-                    // FirebaseFirestore.instance.
-                    //  collection('tags').
-                    //  document(tag).
-                    //  set(data, SetOptions(merge: true))
-                    //   };
-                         }  } ),
+                    //  FirebaseFirestore.instance.collection('Arides').add({
+                       // 'Name': '${rides.rideType}',
+                    //   'Price': '${rides.ridePrice}',
+                     //   'Capacity': '${rides.rideCapacity}',
+                    //  });
+                    FirebaseFirestore.instance.collection('Rides').doc(selectedType)
+                    .update({"Name": '${rides.rideName}'}).then((_) { debugPrint("success!");});
+                    FirebaseFirestore.instance.collection('Rides').doc(selectedType)
+                    .update({"Description": '${rides.rideType}'}).then((_) { debugPrint("success!");});
+                           } }),
                     SizedBox(height: 10),
                     Row(
                       children: [
