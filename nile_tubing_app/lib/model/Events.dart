@@ -3,8 +3,8 @@ class Events {
   final String? EventID;
   final String? EventDescription;
   final String? EventType;
-  final DateTime? EventStart;
-  final DateTime? EventEnd;
+  final String? EventStart;
+  final String? EventEnd;
   final String? EventPrice;
 
   Events(

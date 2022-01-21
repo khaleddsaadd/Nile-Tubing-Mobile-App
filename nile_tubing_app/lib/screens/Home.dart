@@ -151,7 +151,7 @@ class Home extends StatelessWidget {
             decoration: new BoxDecoration(color: Colors.white),
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: Column(children: [
+            child: ListView(children: [
               Padding(
                   padding: const EdgeInsets.only(top: 100),
                   child: Align(
@@ -180,7 +180,11 @@ class Home extends StatelessWidget {
                   Events event = Events(
                       EventName: document['Name'],
                       EventPrice: document['Price'],
-                     
+                      //EventDescription: document['Description'],
+                      EventType: document['Type'],
+                       EventStart: document['Start Date'].toDate().toString(),
+                      // EventEnd:document['End Date'].toDate().toString()
+                    
                       );
                       
                   return Column(
@@ -189,6 +193,7 @@ class Home extends StatelessWidget {
                       // Text("${event.EventPrice}")
                       DataTable(  
               columns: [  
+               
                 DataColumn(label: Text(  
                     'Name',  
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)  
@@ -197,6 +202,23 @@ class Home extends StatelessWidget {
                     'Price',  
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)  
                 )),
+               
+                DataColumn(label: Text(  
+                    'Type',  
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)  
+                )),
+                  DataColumn(label: Text(  
+                    'Description',  
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)  
+                )),
+                DataColumn(label: Text(  
+                    'Start Date',  
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)  
+                )),
+                //DataColumn(label: Text(  
+                //     'End Date',  
+                //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)  
+                // )),
                 DataColumn(label: Text(  
                     'Test',  
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)  
@@ -205,8 +227,13 @@ class Home extends StatelessWidget {
                 ],  
               rows: [  
                 DataRow(cells: [  
+
                   DataCell(Text("${event.EventName}")),  
                   DataCell(Text("${event.EventPrice}")),
+                  DataCell(Text("${event.EventType}")),
+                  DataCell(Text("${event.EventDescription}")),
+                  DataCell(Text("${event.EventStart}")),
+             
                   DataCell(RaisedButton(
                     onPressed: () {
                       Navigator.push(
