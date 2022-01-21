@@ -182,7 +182,7 @@ class Home extends StatelessWidget {
                       EventPrice: document['Price'],
                       // EventDescription: document['Description'],
                       EventType: document['Type'],
-                      //  EventStart: document['Start Date'].toDate().toString(),
+                      EventStart: document['Start Date'].toDate().toString(),
                       // EventEnd:document['End Date'].toDate().toString()
                     
                       );
@@ -244,7 +244,7 @@ Padding(
                                     height: 30,
                                     child: Align(
                                       alignment: Alignment.center,
-                                      child: Text("${event.EventType}",
+                                      child: Text("${event.EventStart}",
                                           style: TextStyle(fontSize: 18.0)),
                                     )))),                        
                       ]))
