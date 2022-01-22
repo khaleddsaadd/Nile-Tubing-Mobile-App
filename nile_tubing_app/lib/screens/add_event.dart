@@ -10,14 +10,14 @@ import 'package:nile_tubing_app/model/add_ride_admin.dart';
 // import 'package:nile_tubing_app/services/authentication_services.dart';
 // import 'package:provider/provider.dart';
 
-class AddRide extends StatefulWidget {
+class AddEvent extends StatefulWidget {
   @override
-  State<AddRide> createState() => _AddRideState();
+  State<AddEvent> createState() => _AddEventState();
 }
 
 
 
-class _AddRideState extends State<AddRide> {
+class _AddEventState extends State<AddEvent> {
   bool _isObscure = true;
   late ridesmodel rides;
   final _formKey = GlobalKey<FormState>();
