@@ -213,10 +213,18 @@ class _SelectedRideState extends State<SelectedRide> {
                                                 MaterialStateProperty.all<
                                                     Color>(Color(0xff123456))),
                                         onPressed: () {
+                                          ridesmodel r = ridesmodel(
+                                              rideName: data['Name'],
+                                              ridePrice:
+                                                  int.parse(data['Price']));
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      CheckOut()));
+                                                      CheckOut(
+                                                        RideName: r.rideName,
+                                                        RidePrice: r.ridePrice
+                                                            .toString(),
+                                                      )));
                                         },
                                         child: Text('Checkout',
                                             style: TextStyle(
