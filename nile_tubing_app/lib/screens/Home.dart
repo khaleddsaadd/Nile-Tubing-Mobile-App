@@ -9,7 +9,12 @@ import 'package:nile_tubing_app/services/authentication_services.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,13 +209,32 @@ class Home extends StatelessWidget {
                     ]),
                 height: 185,
                 width: 400,
-                child:Padding(padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),child:Column(children: [
-
-                  Row(children: [Text("Name",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 190 ),     Align(alignment: Alignment.center,child:Text("${event.EventName}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))) ]),
-                  Row(children: [Text("Price",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,     color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 200 ),     Align(alignment: Alignment.center,child:Text("${event.EventPrice}",style: TextStyle(fontSize: 15,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
-                  Row(children: [Text("Type",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 200 ),     Align(alignment: Alignment.center,child:Text("${event.EventType}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
-                  Row(children: [Text("Start Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 100 ),     Align(alignment: Alignment.center,child:Text("${event.EventStart}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
-                  Row(children: [Text("End Date  ",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 100 ),     Align(alignment: Alignment.center,child:Text("${event.EventEnd}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
+                child:Padding(padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),child:Column(children: 
+                [
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                  Column(children: [
+                  Text("Name",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                  Text("Price",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                  Text("Type",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),   
+                  Text("Start Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                  Text("End Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                  ],),
+                  Column(children: [
+                     Text("${event.EventName}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                      Text("${event.EventPrice}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                       Text("${event.EventType}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                        Text("${event.EventStart}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                         Text("${event.EventEnd}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),
+                        
+                  ],),
+                  // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Name",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventName}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
+                  // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Price",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventPrice}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
+                  // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Type",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventType}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
+                  // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Start Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventStart}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
+                  // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("End Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventEnd}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
+                
+                ]),
                   Container(
                   child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
@@ -234,8 +258,9 @@ class Home extends StatelessWidget {
                             fontFamily: 'Cairo')),
                   ),
                 ],
-              ))
-                ]) )
+              ))])
+                 
+                ),
                   
             ))
 
