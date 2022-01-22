@@ -180,75 +180,66 @@ class Home extends StatelessWidget {
                   Events event = Events(
                       EventName: document['Name'],
                       EventPrice: document['Price'],
-                      // EventDescription: document['Description'],
+                      //EventDescription: document['Description'],
                       EventType: document['Type'],
                       EventStart: document['Start Date'].toDate().toString(),
-                      // EventEnd:document['End Date'].toDate().toString()
+                      EventEnd:document['End Date'].toDate().toString()
                     
                       );
                       
                   return Column(
                     children: [
-                      Row(children: [
-                  Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 110,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage("assets/Background.jpg"),
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          )
-                        ],
-                      )),
+                    Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                      ),
+                    ]),
+                height: 185,
+                width: 400,
+                child:Padding(padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),child:Column(children: [
+
+                  Row(children: [Text("Name",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 190 ),     Align(alignment: Alignment.center,child:Text("${event.EventName}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))) ]),
+                  Row(children: [Text("Price",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,     color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 200 ),     Align(alignment: Alignment.center,child:Text("${event.EventPrice}",style: TextStyle(fontSize: 15,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
+                  Row(children: [Text("Type",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 200 ),     Align(alignment: Alignment.center,child:Text("${event.EventType}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
+                  Row(children: [Text("Start Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 100 ),     Align(alignment: Alignment.center,child:Text("${event.EventStart}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
+                  Row(children: [Text("End Date  ",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),SizedBox(width: 100 ),     Align(alignment: Alignment.center,child:Text("${event.EventEnd}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')))]),
                   Container(
-                      width: MediaQuery.of(context).size.width - 140,
-                      child: Column(children: [
-                        Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Container(
-                                    height: 40,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text("${event.EventName}",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 22.0)),
-                                    )))),
-                        Padding(
-                            padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 20.0),
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Container(
-                                    height: 30,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text("${event.EventPrice}",
-                                          style: TextStyle(fontSize: 18.0)),
-                                    )))),
-Padding(
-                            padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 20.0),
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Container(
-                                    height: 30,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text("${event.EventStart}",
-                                          style: TextStyle(fontSize: 18.0)),
-                                    )))),                        
-                      ]))
-                ])
+                  child: Row(
+                // ignore: prefer_const_literals_to_create_immutables
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CheckOut()),
+                      );
+                    },
+                    color: Color(0xff123456).withOpacity(1),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Text(" Book Now ",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontFamily: 'Cairo')),
+                  ),
+                ],
+              ))
+                ]) )
+                  
+            ))
+
+
                       // Text("${event.EventName}"),
                       // Text("${event.EventPrice}")
               //         DataTable(  
@@ -318,30 +309,7 @@ Padding(
               );
             },
           ),
-              Container(
-                  child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CheckOut()),
-                      );
-                    },
-                    color: Color(0xff123456).withOpacity(1),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text("Check Out!",
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.white,
-                            fontFamily: 'Cairo')),
-                  ),
-                ],
-              ))
+              
             ]),
           ),
           
