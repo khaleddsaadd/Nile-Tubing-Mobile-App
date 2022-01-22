@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:843523157131:android:de626041bbaa3171a5f88e",
         "android_client_info": {
-          "package_name": "com.example.nile_tubing_app"
+          "package_name": "eg.edu.miuegypt.csc422.ntubing"
         }
       },
       "oauth_client": [
