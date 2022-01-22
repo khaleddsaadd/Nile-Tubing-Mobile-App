@@ -128,7 +128,18 @@ class _ProfileState extends State<Profile> {
                             SizedBox(height: 40),
                             Center(
                               child: ElevatedButton(
-                                  onPressed: () {}, child: Text('Update')),
+                                  onPressed: () {
+                                    FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(id)
+                                        .update({
+                                      "First Name": FNameController.text.trim(),
+                                      "Last Name": LNameController.text.trim()
+                                    }).then((_) {
+                                      debugPrint("success!");
+                                    });
+                                  },
+                                  child: Text('Update')),
                             )
                           ],
                         ),
