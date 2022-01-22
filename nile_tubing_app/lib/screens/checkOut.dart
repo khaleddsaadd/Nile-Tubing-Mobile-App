@@ -5,6 +5,7 @@ import 'package:nile_tubing_app/screens/Home.dart';
 import 'package:nile_tubing_app/screens/Payment.dart';
 import 'package:nile_tubing_app/screens/Rides.dart';
 import 'package:nile_tubing_app/screens/drawer.dart';
+import 'package:nile_tubing_app/screens/profile.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
 
 class CheckOut extends StatelessWidget {
@@ -44,7 +45,7 @@ class CheckOut extends StatelessWidget {
                           size: 35, color: Colors.yellow[700]),
                       onPressed: () => Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => SignIn()),
+                            MaterialPageRoute(builder: (context) => Profile()),
                           )),
                 ],
               ),
