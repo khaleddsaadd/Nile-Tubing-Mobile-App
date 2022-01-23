@@ -32,6 +32,11 @@ static const snackBar = SnackBar(
   
 );
 
+static const snackBarE = SnackBar(
+  content: Text('Date Empty', style: TextStyle(color: Color(0xff11b719)),),
+  
+);
+
 
   var selectedType;
   final _formKey = GlobalKey<FormState>();
@@ -144,6 +149,13 @@ static const snackBar = SnackBar(
                 Column(children: <Widget>[
                   // Text('Choose Time'),
                   DateTimeField(
+                    validator: (value) {
+                        if ((value.toString().isEmpty) ||
+                            (DateTime.tryParse(value.toString()) == null)) {
+                           ScaffoldMessenger.of(context).showSnackBar(snackBarE);
+                        }
+                        return null;
+                      },
                     format: format,
                     decoration: InputDecoration(
                     filled: true,
@@ -158,9 +170,9 @@ static const snackBar = SnackBar(
                     onShowPicker: (context, currentValue) async {
                       final date = await showDatePicker(
                           context: context,
-                          firstDate: DateTime(1900),
+                          firstDate: DateTime.now(),
                           initialDate: currentValue ?? DateTime.now(),
-                          lastDate: DateTime(2100));
+                          lastDate: DateTime(2035));
                       if (date != null) {
                         final time = await showTimePicker(
                           context: context,

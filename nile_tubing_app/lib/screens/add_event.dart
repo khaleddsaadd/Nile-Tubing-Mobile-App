@@ -225,9 +225,7 @@ static const snackBar = SnackBar(
                   },
                   keyboardType: TextInputType.text,
                   
-                  inputFormatters: [new LengthLimitingTextInputFormatter(500),
-    FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
-  ],
+                  inputFormatters: [new LengthLimitingTextInputFormatter(500),  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
