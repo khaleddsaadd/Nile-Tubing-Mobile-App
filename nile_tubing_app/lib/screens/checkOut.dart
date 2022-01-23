@@ -131,45 +131,16 @@ class CheckOut extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Container(
                                       child: Row(children: [
-//Add Icon
-                                    Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
-                                        color: Colors.blue[300],
-                                      ),
-                                      child: IconButton(
-                                        icon: const Icon(Icons.add, size: 15),
-                                        color: Colors.white,
-                                        onPressed: () {},
-                                      ),
-                                    ),
+
 //Counter
                                     Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 8.0),
-                                        child: Text("1",
+                                        child: Text(counter.toString()+" Tickets",
                                             style: TextStyle(
                                                 fontSize: 16.0,
                                                 fontWeight: FontWeight.bold))),
-//Remove Icon
-                                    Container(
-                                      width: 20,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
-                                        color: Colors.grey[300],
-                                      ),
-                                      child: IconButton(
-                                        icon:
-                                            const Icon(Icons.remove, size: 15),
-                                        color: Colors.white,
-                                        onPressed: () {},
-                                      ),
-                                    )
+
                                   ]))),
                               Padding(
                                   padding: const EdgeInsets.only(right: 10),
