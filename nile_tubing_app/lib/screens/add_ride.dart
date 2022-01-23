@@ -5,6 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../model/rides.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nile_tubing_app/model/add_ride_admin.dart';
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:nile_tubing_app/screens/admin.dart';
+
 // import 'package:nile_tubing_app/screens/signup.dart';
 // import 'Home.dart';
 // import 'package:nile_tubing_app/services/authentication_services.dart';
@@ -15,14 +19,15 @@ class AddRide extends StatefulWidget {
   State<AddRide> createState() => _AddRideState();
 }
 
-
-
 class _AddRideState extends State<AddRide> {
   bool _isObscure = true;
   late ridesmodel rides;
 
   List<String> _accountType = <String>[];
-    
+   List<DateTime> dates = <DateTime>[];
+  
+ 
+
   var selectedType;
   final _formKey = GlobalKey<FormState>();
   final RideNController = TextEditingController();
@@ -31,6 +36,11 @@ class _AddRideState extends State<AddRide> {
   final DateController = TextEditingController();
   final RideDController = TextEditingController();
   final CapacityController = TextEditingController();
+
+  final format = DateFormat("yyyy-MM-dd HH:mm");
+  late DateTime dt;
+  late Timestamp myTimeStamp;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -43,97 +53,144 @@ class _AddRideState extends State<AddRide> {
               alignment: Alignment.center,
               margin: EdgeInsets.all(10),
               child: Column(children: [
-                // IconButton(
-                //     alignment: Alignment(-35, 5),
-                //     icon: new Icon(
-                //       Icons.arrow_back,
-                //       color: Color(0xFF002E5C),
-                //     ),
-                //      onPressed: ()
-                //     => Navigator.push(
-                //           context,
-                //           MaterialPageRoute(builder: (context) => ),
-                //         )
-                //     ),
-               
+              
+                IconButton(
+                    alignment: Alignment(-35, 5),
+                    icon: new Icon(
+                      Icons.arrow_back,
+                      color: Color(0xFF002E5C),
+                    ),
+                     onPressed: ()
+                    => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AdminHome() ),
+                        )
+                    ),
+
                 SizedBox(
                   height: 30,
                 ),
-              
+
                 Text(
-                  "Add Ride",
+                  "Edit Ride",
                   style: TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF002E5C)),
                 ),
                 SizedBox(height: 20),
-          Image.asset('assets/Add.png'),
-          SizedBox(height: 20),
+                Image.asset('assets/Add.png'),
+                SizedBox(height: 20),
 
-          StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData){
-                      const Text("Loading.....");
-                    }
-                    else {
 
-                      _accountType.clear();
-                      for (int i = 0; i < snapshot.data!.docs.length; i++)
-                      {   DocumentSnapshot snap = snapshot.data!.docs[i];
-                        _accountType.add(snap.id);
-                        
-                      }
+                StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection("Rides")
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        const Text("Loading.....");
+                      } else {
+                        _accountType.clear();
+                        for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                          DocumentSnapshot snap = snapshot.data!.docs[i];
+                          _accountType.add(snap.id);
+                        }
 
-                     return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                         DropdownButton( 
-                    items: _accountType
-                        .map((value) => DropdownMenuItem(
-                              child: Text(
-                                value,
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            DropdownButton(
+                              items: _accountType
+                                  .map((value) => DropdownMenuItem(
+                                        child: Text(
+                                          value,
+                                          style: TextStyle(
+                                              color: Color(0xFF002E5C)),
+                                        ),
+                                        value: value,
+                                      ))
+                                  .toList(),
+                              onChanged: (ridetype) {
+                                final snackBar = SnackBar(
+                                  content: Text(
+                                    'Selected Type is $ridetype',
+                                    style: TextStyle(color: Color(0xff11b719)),
+                                  ),
+                                );
+                                Scaffold.of(context).showSnackBar(snackBar);
+                                setState(() {
+                                  selectedType = ridetype;
+                                });
+                              },
+                              value: selectedType,
+                              isExpanded: false,
+                              hint: Text(
+                                'Choose Ride Type',
                                 style: TextStyle(color: Color(0xFF002E5C)),
                               ),
-                              value: value,
-                            ))
-                        .toList(),
-                   onChanged: (ridetype) {
-                              final snackBar = SnackBar(
-                                content: Text(
-                                  'Selected Type is $ridetype',
-                                  style: TextStyle(color: Color(0xff11b719)),
-                                ),
-                              );
-                              Scaffold.of(context).showSnackBar(snackBar);
-                              setState(() {
-                                selectedType = ridetype;
-                              });
-                            },
-                    value: selectedType,
-                    isExpanded: false,
-                    hint: Text(
-                      'Choose Ride Type',
-                      style: TextStyle(color: Color(0xFF002E5C)),
-                    ),
-                  )
-                ],
-              
-                        
-                      );
-                    } return const Text("Loading.....");
-                  }),
-                 const SizedBox(height: 30),
-                  TextFormField(
+                            )
+                          ],
+                        );
+                      }
+                      return const Text("Loading.....");
+                    }),
+                const SizedBox(height: 30),
+
+                Column(children: <Widget>[
+                  // Text('Choose Time'),
+                  DateTimeField(
+                    format: format,
+                    decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50)),
+                    
+                    hintText: "00/00/0000 00:00",
+                    contentPadding: EdgeInsets.all(20.0),
+                  ),
+                    onShowPicker: (context, currentValue) async {
+                      final date = await showDatePicker(
+                          context: context,
+                          firstDate: DateTime(1900),
+                          initialDate: currentValue ?? DateTime.now(),
+                          lastDate: DateTime(2100));
+                      if (date != null) {
+                        final time = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.fromDateTime(
+                              currentValue ?? DateTime.now()),
+                        );
+
+                        dt = DateTimeField.combine(date, time);
+                         dates.add(dt);
+                        // var a = dt.runtimeType;
+
+                        // debugPrint("$a");
+                        return dt;
+                      } else {
+                        return currentValue;
+                      }
+                    },
+                  ),
+                ]),
+                  Column(children: [
+                  SizedBox(width: 140),
+                  SizedBox(height: 10),
+                  TextButton(
+                      child: Text('Save'),
+                      onPressed: () {
+                        FirebaseFirestore.instance.collection('Rides').doc(selectedType).collection('RideSlots').doc("Slots")
+                        .update({'Date': FieldValue.arrayUnion(dates)}).then((_) { debugPrint("success!");});
+                     
+                          //   FirebaseFirestore.instance.collection('Rides').doc(selectedType).collection('Rides').doc()
+                          // .update({"Date": '${dt}'}).then((_) { debugPrint("success!");});                      })
+                      })]),
+                SizedBox(height: 10),
+                TextFormField(
                   controller: RideNController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                  // keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -145,17 +202,20 @@ class _AddRideState extends State<AddRide> {
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                 ),
-                const SizedBox(height: 10),
-                
-                 TextFormField(
+              
+
+                Column(children: [
+                  SizedBox(width: 140),
+                  
+                  TextButton(
+                      child: Text('Save'),
+                      onPressed: () {
+                            FirebaseFirestore.instance.collection('Rides').doc(selectedType)
+                          .update({"Name": '${RideNController.text.trim()}'}).then((_) { debugPrint("success!");});                      })
+                ]),
+
+                TextFormField(
                   controller: RideDController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                  // keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -167,17 +227,18 @@ class _AddRideState extends State<AddRide> {
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                 ),
-                const SizedBox(height: 10),
-                
+                Column(children: [
+                  SizedBox(width: 140),
+                  
+                  TextButton(
+                      child: Text('Save'),
+                      onPressed: () {
+                            FirebaseFirestore.instance.collection('Rides').doc(selectedType)
+                          .update({"Description": '${RideDController.text.trim()}'}).then((_) { debugPrint("success!");});                      })
+                ]),
+
                 TextFormField(
                   controller: PriceController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                  // keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -188,58 +249,23 @@ class _AddRideState extends State<AddRide> {
                     hintText: "Price",
                     contentPadding: EdgeInsets.all(20.0),
                   ),
-                  obscureText: true,
-
+                  // obscureText: true,
                 ),
-                const SizedBox(height: 10),
-                //  StreamBuilder<QuerySnapshot>(
-                //   stream: FirebaseFirestore.instance.collection("Rides").snapshots(),
-                //   builder: (context, snapshot) {
-                //     if (!snapshot.hasData)
-                //       const Text("Loading.....");
-                //     else {
-                //       List<DropdownMenuItem> currencyItems = [];
-                //       for (int i = 0; i < snapshot.data.documents.length; i++) {
-                //         DocumentSnapshot snap = snapshot.data.documents[i];
-                //         currencyItems.add(
-                //           DropdownMenuItem(
-                //             child: Text(
-                //               snap.documentID,
-                //               style: TextStyle(color: Color(0xff11b719)),
-                //             ),
-                //             value: "${snap.documentID}",
-                //           ),
-                //         );}}}),
-                // TextFormField(
-                //   controller: DateController,
-                //   validator: (value) {
-                //     if (value == null || value.isEmpty) {
-                //       return 'Please enter some text';
-                //     }
-                //     return null;
-                //   },
-                //   keyboardType: TextInputType.emailAddress,
-                //   decoration: InputDecoration(
-                //     filled: true,
-                //     fillColor: Colors.white,
-                //     border: OutlineInputBorder(
-                //         borderSide: BorderSide.none,
-                //         borderRadius: BorderRadius.circular(50)),
-                //     labelText: 'Date',
-                //     hintText: "Date",
-                //     contentPadding: EdgeInsets.all(20.0),
-                //   ),
-                // ),
-                 const SizedBox(height: 10),
+               
+                 Column(children: [
+                  SizedBox(width: 140),
+                  
+                  TextButton(
+                      child: Text('Save'),
+                      onPressed: () {
+                            FirebaseFirestore.instance.collection('Rides').doc(selectedType)
+                          .update({"Price": '${int.parse(PriceController.text.trim())}'}).then((_) { debugPrint("success!");});                      })
+                ]),
+
+              
                 TextFormField(
                   controller: CapacityController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                  
+              
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -251,73 +277,16 @@ class _AddRideState extends State<AddRide> {
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                 ),
-                SizedBox(height: 10),
-               
-                Column(
-                  children: [
-                    SizedBox(width: 140),
-                    SizedBox(height: 10),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.green[700]),
-                      ),
-                      child: Text(
-                        'Save',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                        ),
-                      ),
-                       onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        rides = ridesmodel(
-                        rideName: RideNController.text.trim(),
-                        rideType: RideDController.text.trim(),
-                        ridePrice: int.parse(PriceController.text.trim()),
-                        // rideCapacity: CapacityController.text.trim(),
-                        
-                      );
+                 Column(children: [
+                  SizedBox(width: 140),
+                  
+                  TextButton(
+                      child: Text('Save'),
+                      onPressed: () {
+                            FirebaseFirestore.instance.collection('Rides').doc(selectedType)
+                          .update({"Capacity": '${CapacityController.text.trim()}'}).then((_) { debugPrint("success!");});                      })
+                ]),
 
-                    //  FirebaseFirestore.instance.collection('Arides').add({
-                       // 'Name': '${rides.rideType}',
-                    //   'Price': '${rides.ridePrice}',
-                     //   'Capacity': '${rides.rideCapacity}',
-                    //  });
-                    FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                    .update({"Name": '${rides.rideName}'}).then((_) { debugPrint("success!");});
-                    FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                    .update({"Description": '${rides.rideType}'}).then((_) { debugPrint("success!");});
-                           } }),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        SizedBox(height: 50),
-                        SizedBox(width: 40),
-                        
-                        // TextButton(
-                          // onPressed: () 
-                          // {
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => SignUp()),
-                          //   );
-                          //   // Respond to button press
-                          // }
-                          // ,
-                          // child: Text(
-                          //   "Sign Up",
-                          //   style: TextStyle(
-                          //     color: Colors.green[700],
-                          //     fontWeight: FontWeight.bold,
-                          //     fontSize: 20,
-                      // ),
-                      //     ),
-                      //   )
-                      ],
-                    )
-                  ],
-                ),
               ]),
             )
           ])),
