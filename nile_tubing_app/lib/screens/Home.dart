@@ -155,7 +155,7 @@ class _HomeState extends State<Home> {
           ),
           Container(
             decoration: new BoxDecoration(color: Colors.white),
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height*2,
             width: MediaQuery.of(context).size.width,
             child: ListView(children: [
               Padding(
