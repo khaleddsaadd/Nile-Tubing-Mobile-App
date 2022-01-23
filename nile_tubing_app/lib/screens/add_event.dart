@@ -346,7 +346,7 @@ SizedBox(height: 10),
 
 
                      
-                    });
+                    }).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});
                    
                         } }),
                     SizedBox(height: 10),
