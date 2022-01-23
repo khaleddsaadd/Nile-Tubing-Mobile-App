@@ -194,7 +194,7 @@ static const snackBar = SnackBar(
                 TextFormField(
                   
                   controller: RideNController,
-                  inputFormatters: [new LengthLimitingTextInputFormatter(50)],
+                  inputFormatters: [new LengthLimitingTextInputFormatter(50),FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
