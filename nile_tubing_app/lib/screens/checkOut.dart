@@ -10,7 +10,10 @@ import 'package:nile_tubing_app/screens/signin.dart';
 class CheckOut extends StatelessWidget {
   String? RideName;
   String? RidePrice;
-  CheckOut({this.RideName, this.RidePrice});
+  String? selected;
+  int? counter;
+
+  CheckOut({this.RideName, this.RidePrice, this.selected, this.counter});
   @override
   Widget build(BuildContext context) {
     var TripDate = "24/10/2000";
@@ -117,7 +120,7 @@ class CheckOut extends StatelessWidget {
                                     height: 30,
                                     child: Align(
                                       alignment: Alignment.center,
-                                      child: Text(TripDate,
+                                      child: Text(selected!,
                                           style: TextStyle(fontSize: 18.0)),
                                     )))),
                         Container(

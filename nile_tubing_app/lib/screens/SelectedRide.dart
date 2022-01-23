@@ -22,8 +22,22 @@ class _SelectedRideState extends State<SelectedRide> {
   TextEditingController dateinput = TextEditingController();
   final capacityController = TextEditingController();
   CollectionReference users = FirebaseFirestore.instance.collection('Rides');
-
+  List<String> _accountType = <String>[];
+  var selectedCurrency, selected;
   get color => null;
+
+  int _counter = 0;
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _dec() {
+    setState(() {
+      _counter--;
+    });
+  }
 
   @override
   void initState() {
@@ -115,7 +129,7 @@ class _SelectedRideState extends State<SelectedRide> {
                                     bottomLeft: Radius.circular(40),
                                     bottomRight: Radius.circular(40))),
                             width: 300,
-                            height: 350,
+                            height: 400,
                             child: Column(children: [
                               Padding(padding: EdgeInsets.all(16)),
                               Text(
@@ -147,46 +161,103 @@ class _SelectedRideState extends State<SelectedRide> {
                                     fontFamily: 'Cairo'),
                               ),
                               SizedBox(
-                                height: 15,
+                                height: 10,
                               ),
-                              StreamBuilder(
-                                stream: FirebaseFirestore.instance
-                                    .collection('Rides')
-                                    .doc(widget.ID)
-                                    .collection('RideSlots')
-                                    .snapshots(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }
+                              StreamBuilder<QuerySnapshot>(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('Rides')
+                                      .doc(widget.ID)
+                                      .collection('RideSlots')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData) {
+                                      const Text("Loading.....");
+                                    } else {
+                                      _accountType.clear();
+                                      DocumentSnapshot snap =
+                                          snapshot.data!.docs[0];
+                                      final dates = snap['Date'];
+                                      final convertedDates = dates
+                                          .map((date) => date.toDate())
+                                          .toList();
+                                      print(convertedDates[1]);
+                                      for (int i = 0;
+                                          i < convertedDates.length;
+                                          i++) {
+                                        _accountType
+                                            .add(convertedDates[i].toString());
+                                      }
 
-                                  return Column(
-                                    children:
-                                        snapshot.data!.docs.map((document) {
-                                      return Column(
-                                        children: [
-                                          Center(
-                                              child: Text(document['Date']
-                                                  .toDate()
-                                                  .toString())),
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          DropdownButton(
+                                            items: _accountType
+                                                .map(
+                                                    (value) => DropdownMenuItem(
+                                                          child: Text(
+                                                            value,
+                                                            style: TextStyle(
+                                                                color: Color(
+                                                                    0xFF002E5C)),
+                                                          ),
+                                                          value: value,
+                                                        ))
+                                                .toList(),
+                                            onChanged: (ridetime) {
+                                              final snackBar = SnackBar(
+                                                content: Text(
+                                                  'Selected Time-Date is $ridetime',
+                                                  style: TextStyle(
+                                                      color: Color(0xff11b719)),
+                                                ),
+                                              );
+                                              Scaffold.of(context)
+                                                  .showSnackBar(snackBar);
+                                              setState(() {
+                                                selected = ridetime;
+                                              });
+                                            },
+                                            value: selected,
+                                            isExpanded: false,
+                                            hint: Text(
+                                              'Choose Time Slot',
+                                              style: TextStyle(
+                                                  color: Color(0xFF002E5C)),
+                                            ),
+                                          )
                                         ],
                                       );
-                                    }).toList(),
-                                  );
-                                },
-                              ),
+                                    }
+                                    return const Text("Loading.....");
+                                  }),
                               SizedBox(
                                 height: 25,
                               ),
                               Text(
-                                'Capacity',
+                                'Quantity',
                                 style: TextStyle(
                                     fontSize: 25,
                                     color: Color(0xff123456),
                                     fontFamily: 'Cairo'),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    _counter != 0
+                                        ? new IconButton(
+                                            icon: new Icon(Icons.remove),
+                                            onPressed: _dec,
+                                          )
+                                        : new Container(),
+                                    new Text(_counter.toString()),
+                                    new IconButton(
+                                        icon: new Icon(Icons.add),
+                                        onPressed: _incrementCounter)
+                                  ],
+                                ),
                               ),
                               SizedBox(
                                 height: 35,
@@ -224,6 +295,8 @@ class _SelectedRideState extends State<SelectedRide> {
                                                         RideName: r.rideName,
                                                         RidePrice: r.ridePrice
                                                             .toString(),
+                                                        selected: selected,
+                                                        counter: _counter,
                                                       )));
                                         },
                                         child: Text('Checkout',
@@ -242,31 +315,6 @@ class _SelectedRideState extends State<SelectedRide> {
               },
             ),
           ),
-          // StreamBuilder(
-          //   stream: FirebaseFirestore.instance
-          //       .collection('Rides')
-          //       .doc(widget.ID)
-          //       .collection('RideSlots')
-          //       .snapshots(),
-          //   builder:
-          //       (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          //     if (!snapshot.hasData) {
-          //       return Center(
-          //         child: CircularProgressIndicator(),
-          //       );
-          //     }
-
-          //     return Column(
-          //       children: snapshot.data!.docs.map((document) {
-          //         return Column(
-          //           children: [
-          //             Center(child: Text(document['Date'].toDate().toString())),
-          //           ],
-          //         );
-          //       }).toList(),
-          //     );
-          //   },
-          // ),
         ]));
   }
 }
