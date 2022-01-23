@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:nile_tubing_app/screens/add_ride.dart';
+import 'package:nile_tubing_app/screens/edit_ride.dart';
 import 'package:nile_tubing_app/screens/admin.dart';
 import 'package:nile_tubing_app/screens/error_screen.dart';
 import 'package:nile_tubing_app/screens/profile.dart';

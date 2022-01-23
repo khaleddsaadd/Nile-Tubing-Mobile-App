@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nile_tubing_app/screens/add_event.dart';
-import 'package:nile_tubing_app/screens/add_ride.dart';
+import 'package:nile_tubing_app/screens/edit_ride.dart';
 import '../model/rides.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nile_tubing_app/model/add_ride_admin.dart';
