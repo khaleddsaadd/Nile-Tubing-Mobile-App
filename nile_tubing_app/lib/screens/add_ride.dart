@@ -27,6 +27,11 @@ class _AddRideState extends State<AddRide> {
    List<DateTime> dates = <DateTime>[];
   
  
+static const snackBar = SnackBar(
+  content: Text('Data Added Succesfully', style: TextStyle(color: Color(0xff11b719)),),
+  
+);
+
 
   var selectedType;
   final _formKey = GlobalKey<FormState>();
@@ -183,10 +188,8 @@ class _AddRideState extends State<AddRide> {
                       child: Text('Save'),
                       onPressed: () {
                         FirebaseFirestore.instance.collection('Rides').doc(selectedType).collection('RideSlots').doc("Slots")
-                        .update({'Date': FieldValue.arrayUnion(dates)}).then((_) { debugPrint("success!");});
-                     
-                          //   FirebaseFirestore.instance.collection('Rides').doc(selectedType).collection('Rides').doc()
-                          // .update({"Date": '${dt}'}).then((_) { debugPrint("success!");});                      })
+                        .update({'Date': FieldValue.arrayUnion(dates)}).then((_) { ScaffoldMessenger.of(context).showSnackBar(snackBar);});
+                    
                       })]),
                 SizedBox(height: 10),
                 TextFormField(
@@ -211,7 +214,7 @@ class _AddRideState extends State<AddRide> {
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Name": '${RideNController.text.trim()}'}).then((_) { debugPrint("success!");});                      })
+                          .update({"Name": '${RideNController.text.trim()}'}).then((_) { ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
                 TextFormField(
@@ -234,7 +237,7 @@ class _AddRideState extends State<AddRide> {
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Description": '${RideDController.text.trim()}'}).then((_) { debugPrint("success!");});                      })
+                          .update({"Description": '${RideDController.text.trim()}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
                 TextFormField(
@@ -259,7 +262,7 @@ class _AddRideState extends State<AddRide> {
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Price": '${int.parse(PriceController.text.trim())}'}).then((_) { debugPrint("success!");});                      })
+                          .update({"Price": '${int.parse(PriceController.text.trim())}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
               
@@ -284,7 +287,7 @@ class _AddRideState extends State<AddRide> {
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Capacity": '${CapacityController.text.trim()}'}).then((_) { debugPrint("success!");});                      })
+                          .update({"Capacity": '${CapacityController.text.trim()}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
               ]),

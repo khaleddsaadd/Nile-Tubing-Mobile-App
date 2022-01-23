@@ -27,6 +27,10 @@ class _AddEventState extends State<AddEvent> {
   final EventDController = TextEditingController();
   final CapacityController = TextEditingController();
 
+static const snackBar = SnackBar(
+  content: Text('Data Added Succesfully', style: TextStyle(color: Color(0xff11b719)),),
+  
+);
   List<String> _accountType = <String>[];
 
   var selectedType;
@@ -198,6 +202,7 @@ SizedBox(height: 10),
                         );
 
                         Et = DateTimeField.combine(date, time);
+                       
                         // var a = dt.runtimeType;
 
                         // debugPrint("$a");
@@ -277,77 +282,77 @@ SizedBox(height: 10),
                 ),
                 
                  const SizedBox(height: 10),
-                TextFormField(
-                  controller: CapacityController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
+                // TextFormField(
+                //   controller: CapacityController,
+                //   validator: (value) {
+                //     if (value == null || value.isEmpty) {
+                //       return 'Please enter some text';
+                //     }
+                //     return null;
+                //   },
                   
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(50)),
-                    labelText: 'Capacity',
-                    hintText: "Capacity",
-                    contentPadding: EdgeInsets.all(20.0),
-                  ),
-                ),
+                //   decoration: InputDecoration(
+                //     filled: true,
+                //     fillColor: Colors.white,
+                //     border: OutlineInputBorder(
+                //         borderSide: BorderSide.none,
+                //         borderRadius: BorderRadius.circular(50)),
+                //     labelText: 'Capacity',
+                //     hintText: "Capacity",
+                //     contentPadding: EdgeInsets.all(20.0),
+                //   ),
+                // ),
                 SizedBox(height: 10),
                
-                // Column(
-                //   children: [
-                //     SizedBox(width: 140),
-                //     SizedBox(height: 10),
-                //     ElevatedButton(
-                //       style: ButtonStyle(
-                //         backgroundColor:
-                //             MaterialStateProperty.all(Colors.green[700]),
-                //       ),
-                //       child: Text(
-                //         'Save',
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w800,
-                //           fontSize: 20,
-                //         ),
-                //       ),
-                //        onPressed: () {
-                //       if (_formKey.currentState!.validate()) {
-                //         event = Events(
+                Column(
+                  children: [
+                    SizedBox(width: 140),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.green[700]),
+                      ),
+                      child: Text(
+                        'Save',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                        ),
+                      ),
+                       onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        event = Events(
                        
-                //         EventName: EventNController.text.trim(),
-                //         EventPrice: PriceController.text.trim(),
-                //         EventDescription: EventDController.text.trim(),
-                //         EventStart: St,
-                //         EventEnd: Et,
-                //         EventType : selectedType,
-                //         Capacity :CapacityController.text.trim(),
+                        EventName: EventNController.text.trim(),
+                        EventPrice: PriceController.text.trim(),
+                        EventDescription: EventDController.text.trim(),
+                        // EventStart: St.toDate(),
+                        // EventEnd: Et,
+                        EventType : selectedType,
+                        // Capacity :CapacityController.text.trim(),
 
                         
-                //       );
+                      );
 
-                //     FirebaseFirestore.instance.collection('Events').add({
-                //       'Name': '${event.EventName}',
-                //       'Price': '${event.EventPrice}',
-                //       'Description': '${event.EventDescription}',
-                //       'Start' :'${event.EventStart}',
-                //       'End' :'${event.EventEnd}',
-                //       'Type' :'${event.EventType}',
-                //       'Capacity' :'${event.Capacity}',
+                    FirebaseFirestore.instance.collection('Events').add({
+                      'Name': '${event.EventName}',
+                      'Price': '${event.EventPrice}',
+                      'Description': '${event.EventDescription}',
+                      'Start Date' :St,
+                      'End Date' :Et,
+                      'Type' :'${event.EventType}',
+                      // 'Capacity' :'${event.Capacity}',
 
 
-                //       // 'Capacity': '${rides.rideCapacity}',
-                //     });
+                     
+                    });
                    
-                //         } }),
-                //     SizedBox(height: 10),
+                        } }),
+                    SizedBox(height: 10),
                    
-                //   ],
-                // ),
+                  ],
+                ),
               ]),
             )
           ])),
