@@ -273,11 +273,6 @@ class _HomeState extends State<Home> {
                                                       fontFamily: 'Cairo')),
                                             ],
                                           ),
-                                          // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Name",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventName}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
-                                          // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Price",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventPrice}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
-                                          // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Type",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventType}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
-                                          // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Start Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventStart}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
-                                          // Row( mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("End Date",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,      color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo')),    Text("${event.EventEnd}",style: TextStyle(fontSize: 15,       color: Color(0xff123456).withOpacity(1),fontFamily: 'Cairo'))]),
                                         ]),
                                     Container(
                                         child: Row(
@@ -312,70 +307,7 @@ class _HomeState extends State<Home> {
                                   ])),
                             ))
 
-                        // Text("${event.EventName}"),
-                        // Text("${event.EventPrice}")
-                        //         DataTable(
-                        // columns: [
-
-                        //   DataColumn(label: Text(
-                        //       'Name',
-                        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                        //   )),
-                        //   DataColumn(label: Text(
-                        //       'Price',
-                        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                        //   )),
-
-                        //   DataColumn(label: Text(
-                        //       'Type',
-                        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                        //   )),
-                        //   //   DataColumn(label: Text(
-                        //   //     'Description',
-                        //   //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                        //   // )),
-                        //   // DataColumn(label: Text(
-                        //   //     'Start Date',
-                        //   //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                        //   // )),
-                        //   //DataColumn(label: Text(
-                        //   //     'End Date',
-                        //   //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                        //   // )),
-                        //   DataColumn(label: Text(
-                        //       'Test',
-                        //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                        //   )),
-
-                        //   ],
-                        // rows: [
-                        //   DataRow(cells: [
-
-                        //     DataCell(Text("${event.EventName}")),
-                        //     DataCell(Text("${event.EventPrice}")),
-                        //     DataCell(Text("${event.EventType}")),
-                        //     // DataCell(Text("${event.EventDescription}")),
-                        //     // DataCell(Text("${event.EventStart}")),
-
-                        //     DataCell(RaisedButton(
-                        //       onPressed: () {
-                        //         Navigator.push(
-                        //           context,
-                        //           MaterialPageRoute(builder: (context) => CheckOut()),
-                        //         );
-                        //       },
-                        //       color: Color(0xff123456).withOpacity(1),
-                        //       shape: RoundedRectangleBorder(
-                        //           borderRadius: BorderRadius.circular(20)),
-                        //       child: Text("Book Now",
-                        //           style: TextStyle(
-                        //               fontSize: 15,
-                        //               color: Colors.white,
-                        //               fontFamily: 'Cairo')),
-                        //     ),)
-                        //   ]),
-
-                        //       ],)
+                       
                       ]);
                     }).toList(),
                   );
