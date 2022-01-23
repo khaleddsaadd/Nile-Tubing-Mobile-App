@@ -157,7 +157,7 @@ class _HomeState extends State<Home> {
             decoration: new BoxDecoration(color: Colors.white),
             height: MediaQuery.of(context).size.height*2,
             width: MediaQuery.of(context).size.width,
-            child: ListView(children: [
+            child: Column(children: [
               Padding(
                   padding: const EdgeInsets.only(top: 100),
                   child: Align(
