@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/Home.dart';
@@ -11,10 +10,16 @@ import 'package:nile_tubing_app/screens/signin.dart';
 class CheckOut extends StatelessWidget {
   String? RideName;
   int? RidePrice;
+  String? RideImage;
   String? selected;
   int? counter;
   int? Total;
-  CheckOut({this.RideName, this.RidePrice, this.selected, this.counter});
+  CheckOut(
+      {this.RideName,
+      this.RidePrice,
+      this.RideImage,
+      this.selected,
+      this.counter});
   // int p = int.parse(RidePrice!);
   @override
   Widget build(BuildContext context) {
@@ -86,7 +91,7 @@ class CheckOut extends StatelessWidget {
                             height: 150,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage("assets/Background.jpg"),
+                                image: AssetImage('assets/${RideImage}'),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.circular(5),
@@ -131,16 +136,15 @@ class CheckOut extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Container(
                                       child: Row(children: [
-
 //Counter
                                     Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 8.0),
-                                        child: Text(counter.toString()+" Tickets",
+                                        child: Text(
+                                            counter.toString() + " Tickets",
                                             style: TextStyle(
                                                 fontSize: 16.0,
                                                 fontWeight: FontWeight.bold))),
-
                                   ]))),
                               Padding(
                                   padding: const EdgeInsets.only(right: 10),
