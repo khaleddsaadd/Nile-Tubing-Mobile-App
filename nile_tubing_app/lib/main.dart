@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:nile_tubing_app/screens/add_ride.dart';
+import 'package:nile_tubing_app/screens/admin.dart';
 import 'package:nile_tubing_app/screens/error_screen.dart';
+import 'package:nile_tubing_app/screens/mai.dart';
+import 'package:nile_tubing_app/screens/profile.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
+import 'package:nile_tubing_app/screens/test.dart';
 import 'package:provider/provider.dart';
 import 'services/authentication_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/loading_screen.dart';
 import 'screens/Home.dart';
 import 'package:nile_tubing_app/model/user_model.dart';
+import 'screens/profile.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +23,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   final _fbApp = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -31,6 +38,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: FutureBuilder(
           future: _fbApp,
           builder: (context, snapshot) {
@@ -54,7 +62,10 @@ class Authenticationwrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
     if (firebaseUser != null) {
       print(firebaseUser.uid);
-      return Home();
+      if (firebaseUser.email == 'admin@gmail.com') {
+        return AdminHome();
+      } else
+        return Home();
     }
     return SignIn();
   }
