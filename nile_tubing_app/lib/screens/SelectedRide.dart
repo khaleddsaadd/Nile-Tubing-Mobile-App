@@ -287,13 +287,15 @@ class _SelectedRideState extends State<SelectedRide> {
                                           ridesmodel r = ridesmodel(
                                               rideName: data['Name'],
                                               ridePrice:
-                                                  int.parse(data['Price']));
+                                                  int.parse(data['Price']),
+                                              rideImage: data['Image']);
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       CheckOut(
                                                         RideName: r.rideName,
                                                         RidePrice: r.ridePrice,
+                                                        RideImage: r.rideImage,
                                                         selected: selected,
                                                         counter: _counter,
                                                       )));
