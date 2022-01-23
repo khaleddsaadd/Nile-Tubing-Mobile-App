@@ -3,6 +3,7 @@ import 'package:nile_tubing_app/screens/drawer.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
 import 'paymentForm.dart';
 import '../modules/home_widget.dart';
+import 'package:nile_tubing_app/screens/profile.dart';
 import 'Rides.dart';
 
 class Payment extends StatefulWidget {
@@ -38,9 +39,13 @@ class _PaymentState extends State<Payment> {
                   child: Row(
                     children: [
                       IconButton(
-                          onPressed: () {},
                           icon: Icon(Icons.person_outline_rounded,
-                              size: 35, color: Colors.yellow[700])),
+                              size: 35, color: Colors.yellow[700]),
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile()),
+                              )),
                     ],
                   ),
                 )
