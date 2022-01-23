@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:flutter/material.dart';
+import 'package:nile_tubing_app/screens/drawer.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -27,7 +28,7 @@ class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      drawer: drawer(),
       body: ListView(
         children: [
           // ignore: sized_box_for_whitespace
@@ -47,8 +48,11 @@ class _HelpState extends State<Help> {
             height: 100,
             //color: Color.fromRGBO(0, 46, 92, 1),
           ),
-          Image.asset('assets/10162.png'),
-
+          Icon(
+            Icons.help_outline,
+            color: Color(0xff123456),
+            size: 150.0,
+          ),
           Column(children: [
             Container(
               margin: EdgeInsets.all(10),

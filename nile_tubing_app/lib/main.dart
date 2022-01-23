@@ -5,6 +5,7 @@ import 'package:nile_tubing_app/screens/admin.dart';
 import 'package:nile_tubing_app/screens/error_screen.dart';
 import 'package:nile_tubing_app/screens/profile.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
+import 'package:nile_tubing_app/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'services/authentication_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,7 +64,7 @@ class Authenticationwrapper extends StatelessWidget {
       if (firebaseUser.email == 'admin@gmail.com') {
         return AdminHome();
       } else
-        return Home();
+        return Splash();
     }
     return SignIn();
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/Home.dart';
+import 'package:nile_tubing_app/screens/help.dart';
 import 'package:nile_tubing_app/services/authentication_services.dart';
 import 'package:provider/provider.dart';
 import 'package:nile_tubing_app/screens/Rides.dart';
@@ -55,9 +56,13 @@ class drawer extends StatelessWidget {
             leading: const Icon((Icons.phone)),
             title: Transform.translate(
               offset: Offset(-16, 0),
-              child: Text('Contact us'),
+              child: Text('Help'),
             ),
             onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Help()),
+              );
               // Update the state of the app.
               // ...
             },

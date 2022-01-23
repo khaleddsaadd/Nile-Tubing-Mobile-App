@@ -35,17 +35,9 @@ class _RidesState extends State<Rides> {
                     icon: Icon(Icons.arrow_back)),
                 Image.asset('assets/NTLogo.png'),
                 Padding(
-                  padding: EdgeInsets.only(left: 110),
+                  padding: EdgeInsets.only(left: 160),
                   child: Row(
                     children: [
-                      IconButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CheckOut())),
-                        icon: Icon(Icons.local_grocery_store,
-                            size: 35, color: Color(0xff123456)),
-                      ),
                       IconButton(
                           icon: new Icon(Icons.person_outline_rounded,
                               size: 35, color: Colors.yellow[700]),
