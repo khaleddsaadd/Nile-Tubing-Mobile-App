@@ -26,30 +26,31 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: [
                   Container(
-                    height: 100,
-                    child: Row(children: [
-                      Image.asset('assets/NTLogo.png'),
-                      SizedBox(
-                        width: 163,
-                      ),
-                      IconButton(
-                        onPressed: () => Navigator.push(
+          // ignore: prefer_const_literals_to_create_immutables
+          child: Row(children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back)),
+            Image.asset('assets/NTLogo.png'),
+            Padding(
+              padding: EdgeInsets.only(left: 150),
+              child: Row(
+                children: [
+                  IconButton(
+                      icon: new Icon(Icons.person_outline_rounded,
+                          size: 35, color: Colors.yellow[700]),
+                      onPressed: () => Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => CheckOut())),
-                        icon: Icon(Icons.local_grocery_store,
-                            size: 35, color: Color(0xff123456)),
-                      ),
-                      IconButton(
-                          icon: new Icon(Icons.person_outline_rounded,
-                              size: 35, color: Colors.yellow[700]),
-                          onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Profile()),
-                              )),
-                    ]),
-                  ),
+                            MaterialPageRoute(builder: (context) => Profile()),
+                          )),
+                ],
+              ),
+            )
+          ]),
+          height: 100,
+        ),
                   SizedBox(height: 80),
                   Padding(
                     padding:
@@ -62,25 +63,10 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.only(top: 30),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.arrow_back_ios, size: 35),
-                              color: Colors.white,
-                              onPressed: () {},
-                            ),
-                            IconButton(
-                              icon:
-                                  const Icon(Icons.arrow_forward_ios, size: 35),
-                              color: Colors.white,
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
+                        
                       )),
                   Padding(
-                    padding: EdgeInsets.only(top: 60),
+                    padding: EdgeInsets.only(top: 120),
                     child: Row(
                       // ignore: prefer_const_literals_to_create_immutables
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -140,16 +126,7 @@ class _HomeState extends State<Home> {
                     // ignore: prefer_const_literals_to_create_immutables
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                          child: Text("Click here",
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Colors.black,
-                                  fontSize: 20)),
-                          onTap: () {}),
-                      Icon(Icons.gesture, size: 35),
-                    ],
+                   
                   ))
                 ])),
           ),

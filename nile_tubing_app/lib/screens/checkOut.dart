@@ -37,15 +37,9 @@ class CheckOut extends StatelessWidget {
                 icon: Icon(Icons.arrow_back)),
             Image.asset('assets/NTLogo.png'),
             Padding(
-              padding: EdgeInsets.only(left: 110),
+              padding: EdgeInsets.only(left: 150),
               child: Row(
                 children: [
-                  IconButton(
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CheckOut())),
-                    icon: Icon(Icons.local_grocery_store,
-                        size: 35, color: Color(0xff123456)),
-                  ),
                   IconButton(
                       icon: new Icon(Icons.person_outline_rounded,
                           size: 35, color: Colors.yellow[700]),
@@ -205,7 +199,7 @@ class CheckOut extends StatelessWidget {
                         color: Color(0xff123456).withOpacity(0.8),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        child: Text("Check Out",
+                        child: Text("Proceed To Payment",
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.white,
