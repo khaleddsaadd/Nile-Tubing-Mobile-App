@@ -2,6 +2,7 @@
 // ignore_for_file: use_key_in_widget_constructors, unused_import, unused_import, duplicate_ignore, prefer_const_constructors, file_names
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/SelectedRide.dart';
+import 'package:nile_tubing_app/screens/profile.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -51,7 +52,7 @@ class _RidesState extends State<Rides> {
                           onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignIn()),
+                                    builder: (context) => Profile()),
                               )),
                     ],
                   ),

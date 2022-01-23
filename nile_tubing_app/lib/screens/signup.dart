@@ -4,6 +4,11 @@ import 'Home.dart';
 import 'package:flutter/services.dart';
 import 'package:nile_tubing_app/services/authentication_services.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:nile_tubing_app/model/user_model.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -199,7 +204,10 @@ class _SignUpState extends State<SignUp> {
                         if (_formKey.currentState!.validate()) {
                           context.read<AuthenticationService>().signUp(
                               email: myControllerE.text.trim(),
-                              password: myControllerP.text.trim());
+                              password: myControllerP.text.trim(),
+                              fname: myControllerF.text.trim(),
+                              lname: myControllerL.text.trim(),
+                              mobile: myControllerM.text.trim());
                         }
                       },
                       style: ButtonStyle(

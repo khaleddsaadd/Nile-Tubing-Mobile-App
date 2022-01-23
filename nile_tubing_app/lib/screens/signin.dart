@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/add_ride.dart';
 import 'package:nile_tubing_app/screens/signup.dart';
@@ -6,6 +8,8 @@ import 'package:nile_tubing_app/services/authentication_services.dart';
 import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
+  bool? x;
+  SignIn({this.x});
   @override
   State<SignIn> createState() => _SignInState();
 }
@@ -15,6 +19,13 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  String errormessage = '';
+
+  changeText() {
+    setState(() {
+      errormessage = "Incorrect Email or Password";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +38,7 @@ class _SignInState extends State<SignIn> {
               alignment: Alignment.center,
               margin: EdgeInsets.all(10),
               child: Column(children: [
+                // Text(widget.x.toString()),
                 SizedBox(
                   height: 100,
                 ),
@@ -96,6 +108,13 @@ class _SignInState extends State<SignIn> {
                   children: [
                     SizedBox(width: 140),
                     SizedBox(height: 10),
+                    Text(
+                      '$errormessage',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    ),
                     ElevatedButton(
                       onPressed: () {
                         if (emailController.text.trim() == "admin" &&
@@ -104,13 +123,19 @@ class _SignInState extends State<SignIn> {
                             context,
                             MaterialPageRoute(builder: (context) => AddRide()),
                           );
-                        } else {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<AuthenticationService>().signIn(
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim());
-                          }
+                        } else if (_formKey.currentState!.validate()) {
+                          context.read<AuthenticationService>().signIn(
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim());
+
+                          // changeText();
                         }
+                        // if (_formKey.currentState!.validate()) {
+                        //   context.read<AuthenticationService>().signIn(
+                        //       email: emailController.text.trim(),
+                        //       password: passwordController.text.trim());
+                        //   changeText();
+                        // }
                       },
                       style: ButtonStyle(
                         backgroundColor:
