@@ -8,7 +8,7 @@ import 'package:nile_tubing_app/model/add_ride_admin.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:nile_tubing_app/screens/admin.dart';
-
+import 'package:flutter/services.dart';
 // import 'package:nile_tubing_app/screens/signup.dart';
 // import 'Home.dart';
 // import 'package:nile_tubing_app/services/authentication_services.dart';
@@ -59,18 +59,17 @@ static const snackBar = SnackBar(
               margin: EdgeInsets.all(10),
               child: Column(children: [
               
-                IconButton(
-                    alignment: Alignment(-35, 5),
-                    icon: new Icon(
-                      Icons.arrow_back,
-                      color: Color(0xFF002E5C),
-                    ),
-                     onPressed: ()
-                    => Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => AdminHome() ),
-                        )
-                    ),
+              Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+               
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back)),
+               
+                        ), 
+              
 
                 SizedBox(
                   height: 30,
@@ -193,7 +192,9 @@ static const snackBar = SnackBar(
                       })]),
                 SizedBox(height: 10),
                 TextFormField(
+                  
                   controller: RideNController,
+                  inputFormatters: [new LengthLimitingTextInputFormatter(50)],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -219,6 +220,7 @@ static const snackBar = SnackBar(
 
                 TextFormField(
                   controller: RideDController,
+                  inputFormatters: [new LengthLimitingTextInputFormatter(500)],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -242,6 +244,7 @@ static const snackBar = SnackBar(
 
                 TextFormField(
                   controller: PriceController,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -249,7 +252,7 @@ static const snackBar = SnackBar(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(50)),
                     labelText: 'Price',
-                    hintText: "Price",
+                    hintText: "Price in number format please",
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                   // obscureText: true,
@@ -268,7 +271,7 @@ static const snackBar = SnackBar(
               
                 TextFormField(
                   controller: CapacityController,
-              
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -276,7 +279,7 @@ static const snackBar = SnackBar(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(50)),
                     labelText: 'Capacity',
-                    hintText: "Capacity",
+                    hintText: "Capacity in number formar please",
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                 ),

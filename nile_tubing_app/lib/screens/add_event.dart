@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nile_tubing_app/model/add_ride_admin.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter/services.dart';
 
 class AddEvent extends StatefulWidget {
   @override
@@ -26,6 +27,8 @@ class _AddEventState extends State<AddEvent> {
   final EndDateController = TextEditingController();
   final EventDController = TextEditingController();
   final CapacityController = TextEditingController();
+
+ 
 
 static const snackBar = SnackBar(
   content: Text('Data Added Succesfully', style: TextStyle(color: Color(0xff11b719)),),
@@ -52,19 +55,16 @@ static const snackBar = SnackBar(
               margin: EdgeInsets.all(10),
               child: Column(children: [
               
-                // IconButton(
-                //     alignment: Alignment(-35, 5),
-                //     icon: new Icon(
-                //       Icons.arrow_back,
-                //       color: Color(0xFF002E5C),
-                //     ),
-                //      onPressed: ()
-                //     => Navigator.push(
-                //           context,
-                //           MaterialPageRoute(builder: (context) => ),
-                //         )
-                //     ),
+                 Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                                    
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back)),
                
+),
                 SizedBox(
                   height: 30,
                 ),
@@ -76,7 +76,7 @@ static const snackBar = SnackBar(
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF002E5C)),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 0),
           Image.asset('assets/AddE.png'),
           SizedBox(height: 20),
            StreamBuilder<QuerySnapshot>(
@@ -172,7 +172,7 @@ static const snackBar = SnackBar(
                 ]),
 
 
-SizedBox(height: 10),
+                SizedBox(height: 10),
 
                 Column(children: <Widget>[
                   // Text('Choose Time'),
@@ -223,7 +223,11 @@ SizedBox(height: 10),
                     }
                     return null;
                   },
-                  // keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.text,
+                  
+                  inputFormatters: [new LengthLimitingTextInputFormatter(500),
+    FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+  ],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -245,7 +249,8 @@ SizedBox(height: 10),
                     }
                     return null;
                   },
-                  keyboardType: TextInputType.visiblePassword,
+                  
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -253,10 +258,10 @@ SizedBox(height: 10),
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(50)),
                     labelText: 'Price',
-                    hintText: "Price",
+                    hintText: "Price in numbers format only",
                     contentPadding: EdgeInsets.all(20.0),
                   ),
-                  // obscureText: true,
+                 
 
                 ),
                 const SizedBox(height: 10),
@@ -268,7 +273,7 @@ SizedBox(height: 10),
                     }
                     return null;
                   },
-                  // keyboardType: TextInputType.emailAddress,
+                  inputFormatters: [new LengthLimitingTextInputFormatter(500)],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,

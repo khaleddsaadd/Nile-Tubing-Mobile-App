@@ -33,6 +33,18 @@ class _AdminHomeState extends State<AdminHome> {
             SizedBox(
               height: 30,
             ),
+
+             Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+               
+                    onPressed: () {
+                      context.read<AuthenticationService>().signOut();
+                    },
+                    icon: Icon(Icons.logout)),
+               
+),
+
             Text(
               "Hello Admin",
               style: TextStyle(
@@ -42,15 +54,15 @@ class _AdminHomeState extends State<AdminHome> {
             ),
             SizedBox(height: 20),
             Image.asset('assets/Add.png'),
-            SizedBox(height: 20),
-            Column(
+            SizedBox(height: 50),
+            Row(
               children: [
-                SizedBox(width: 140),
-                SizedBox(height: 10),
+                SizedBox(width: 70),
+                
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.green[700]),
+                          MaterialStateProperty.all(Colors.yellowAccent[700]),
                     ),
                     child: Text(
                       'Rides',
@@ -66,10 +78,11 @@ class _AdminHomeState extends State<AdminHome> {
                       );
                     }),
                 SizedBox(height: 30),
+                SizedBox(width: 30),
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.green[700]),
+                          MaterialStateProperty.all(Colors.yellowAccent[700]),
                     ),
                     child: Text(
                       'Events',
@@ -84,21 +97,21 @@ class _AdminHomeState extends State<AdminHome> {
                         MaterialPageRoute(builder: (context) => AddEvent()),
                       );
                     }),
-                ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.green[700]),
-                    ),
-                    child: Text(
-                      'Log out',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 20,
-                      ),
-                    ),
-                    onPressed: () {
-                      context.read<AuthenticationService>().signOut();
-                    }),
+                // ElevatedButton(
+                //     style: ButtonStyle(
+                //       backgroundColor:
+                //           MaterialStateProperty.all(Colors.green[700]),
+                //     ),
+                //     child: Text(
+                //       'Log out',
+                //       style: TextStyle(
+                //         fontWeight: FontWeight.w800,
+                //         fontSize: 20,
+                //       ),
+                //     ),
+                //     onPressed: () {
+                //       context.read<AuthenticationService>().signOut();
+                //     }),
               ],
             ),
           ]),
