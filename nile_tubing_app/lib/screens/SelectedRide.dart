@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nile_tubing_app/screens/checkOut.dart';
+import 'package:nile_tubing_app/screens/profile.dart';
 import '../modules/home_widget.dart';
 import 'package:nile_tubing_app/screens/checkOut.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -81,23 +82,15 @@ class _SelectedRideState extends State<SelectedRide> {
                           width: 80,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 103),
+                          padding: EdgeInsets.only(left: 200),
                           child: Row(children: [
-                            IconButton(
-                              onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CheckOut())),
-                              icon: Icon(Icons.local_grocery_store,
-                                  size: 35, color: Color(0xff123456)),
-                            ),
                             IconButton(
                                 icon: new Icon(Icons.person_outline_rounded,
                                     size: 35, color: Colors.yellow[700]),
                                 onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => SignIn()),
+                                          builder: (context) => Profile()),
                                     )),
                           ]),
                         ),
