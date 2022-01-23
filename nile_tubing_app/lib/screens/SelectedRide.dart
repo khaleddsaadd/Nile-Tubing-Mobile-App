@@ -312,7 +312,7 @@ class _SelectedRideState extends State<SelectedRide> {
                   ]);
                 }
 
-                return Text("loading");
+                return Text("");
               },
             ),
           ),
