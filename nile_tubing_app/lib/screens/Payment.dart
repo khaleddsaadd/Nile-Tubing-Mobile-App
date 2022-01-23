@@ -34,13 +34,13 @@ class _PaymentState extends State<Payment> {
                   'assets/NTLogo.png',
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 110),
+                  padding: EdgeInsets.only(left: 150),
                   child: Row(
                     children: [
                       IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.person_outline_rounded,
-                              size: 35, color: Colors.yellow)),
+                              size: 35, color: Colors.yellow[700])),
                     ],
                   ),
                 )
