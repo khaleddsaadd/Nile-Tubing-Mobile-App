@@ -10,17 +10,15 @@ import 'package:nile_tubing_app/screens/signin.dart';
 
 class CheckOut extends StatelessWidget {
   String? RideName;
-  String? RidePrice;
+  int? RidePrice;
   String? selected;
   int? counter;
-
+  int? Total;
   CheckOut({this.RideName, this.RidePrice, this.selected, this.counter});
+  // int p = int.parse(RidePrice!);
   @override
   Widget build(BuildContext context) {
-    var TripDate = "24/10/2000";
-    var Total = 3890;
-    var GrandTotal = Total;
-
+    Total = RidePrice! * counter!;
     return Scaffold(
       drawer: drawer(),
       body: ListView(children: [
@@ -189,7 +187,7 @@ class CheckOut extends StatelessWidget {
             height: 80,
             child: Align(
               alignment: Alignment.center,
-              child: Text(RidePrice.toString() + " EGP",
+              child: Text(Total.toString() + " EGP",
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
             ),
           ),

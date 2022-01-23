@@ -293,8 +293,7 @@ class _SelectedRideState extends State<SelectedRide> {
                                                   builder: (context) =>
                                                       CheckOut(
                                                         RideName: r.rideName,
-                                                        RidePrice: r.ridePrice
-                                                            .toString(),
+                                                        RidePrice: r.ridePrice,
                                                         selected: selected,
                                                         counter: _counter,
                                                       )));
