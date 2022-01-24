@@ -39,29 +39,6 @@ class _ProfileState extends State<Profile> {
                     },
                     icon: Icon(Icons.arrow_back)),
                 Image.asset('assets/NTLogo.png'),
-                Padding(
-                  padding: EdgeInsets.only(left: 110),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CheckOut())),
-                        icon: Icon(Icons.local_grocery_store,
-                            size: 35, color: Color(0xff123456)),
-                      ),
-                      IconButton(
-                          icon: new Icon(Icons.person_outline_rounded,
-                              size: 35, color: Colors.yellow[700]),
-                          onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignIn()),
-                              )),
-                    ],
-                  ),
-                )
               ]),
               height: 80,
             ),
@@ -144,17 +121,6 @@ class _ProfileState extends State<Profile> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text('History'),
-                      Container(
-                        width: 400,
-                        child: Card(
-                          child: ListTile(
-                            title: Text(""),
-                          ),
-                          elevation: 8,
-                        ),
-                      )
                     ],
                   );
                 }

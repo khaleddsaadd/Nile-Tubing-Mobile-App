@@ -82,7 +82,7 @@ class _SelectedRideState extends State<SelectedRide> {
                           width: 80,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 200),
+                          padding: EdgeInsets.only(left: 150),
                           child: Row(children: [
                             IconButton(
                                 icon: new Icon(Icons.person_outline_rounded,

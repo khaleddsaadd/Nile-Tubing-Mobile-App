@@ -35,7 +35,7 @@ class _PaymentState extends State<Payment> {
                   'assets/NTLogo.png',
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 150),
+                  padding: EdgeInsets.only(left: 135),
                   child: Row(
                     children: [
                       IconButton(
