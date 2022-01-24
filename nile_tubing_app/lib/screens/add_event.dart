@@ -21,12 +21,12 @@ class _AddEventState extends State<AddEvent> {
   bool _isObscure = true;
   late Events event;
   final _formKey = GlobalKey<FormState>();
-  final EventNController = TextEditingController();
-  final PriceController = TextEditingController();
-  final StartDateController = TextEditingController();
-  final EndDateController = TextEditingController();
-  final EventDController = TextEditingController();
-  final CapacityController = TextEditingController();
+  final eventncontroller = TextEditingController();
+  final pricecontroller = TextEditingController();
+  final startdatecontroller = TextEditingController();
+  final enddatecontroller = TextEditingController();
+  final eventddontroller = TextEditingController();
+  final capacitycontroller = TextEditingController();
 
  
 
@@ -39,8 +39,8 @@ static const snackBar = SnackBar(
   var selectedType;
 
   final format = DateFormat("yyyy-MM-dd HH:mm");
-  late DateTime St;
-  late DateTime Et;
+  late DateTime st;
+  late DateTime et;
   late Timestamp myTimeStamp;
 
   @override
@@ -132,7 +132,7 @@ static const snackBar = SnackBar(
                       return const Text("Loading.....");
                     }),
 
- Column(children: <Widget>[
+                Column(children: <Widget>[
                   // Text('Choose Time'),
                   DateTimeField(
                     format: format,
@@ -149,9 +149,9 @@ static const snackBar = SnackBar(
                     onShowPicker: (context, currentValue) async {
                       final date = await showDatePicker(
                           context: context,
-                          firstDate: DateTime(1900),
+                          firstDate: DateTime.now(),
                           initialDate: currentValue ?? DateTime.now(),
-                          lastDate: DateTime(2100));
+                          lastDate: DateTime(2035));
                       if (date != null) {
                         final time = await showTimePicker(
                           context: context,
@@ -159,11 +159,11 @@ static const snackBar = SnackBar(
                               currentValue ?? DateTime.now()),
                         );
 
-                        St = DateTimeField.combine(date, time);
+                        st = DateTimeField.combine(date, time);
                         // var a = dt.runtimeType;
 
                         // debugPrint("$a");
-                        return St;
+                        return st;
                       } else {
                         return currentValue;
                       }
@@ -191,9 +191,9 @@ static const snackBar = SnackBar(
                     onShowPicker: (context, currentValue) async {
                       final date = await showDatePicker(
                           context: context,
-                          firstDate: DateTime(1900),
+                          firstDate: DateTime.now(),
                           initialDate: currentValue ?? DateTime.now(),
-                          lastDate: DateTime(2100));
+                          lastDate: DateTime(2035));
                       if (date != null) {
                         final time = await showTimePicker(
                           context: context,
@@ -201,12 +201,12 @@ static const snackBar = SnackBar(
                               currentValue ?? DateTime.now()),
                         );
 
-                        Et = DateTimeField.combine(date, time);
+                        et = DateTimeField.combine(date, time);
                        
                         // var a = dt.runtimeType;
 
                         // debugPrint("$a");
-                        return Et;
+                        return et;
                       } else {
                         return currentValue;
                       }
@@ -216,7 +216,7 @@ static const snackBar = SnackBar(
 
                 SizedBox(height: 10),
                  TextFormField(
-                  controller: EventNController,
+                  controller: eventncontroller,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter some text';
@@ -225,7 +225,7 @@ static const snackBar = SnackBar(
                   },
                   keyboardType: TextInputType.text,
                   
-                  inputFormatters: [new LengthLimitingTextInputFormatter(500),  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),],
+                  inputFormatters: [new LengthLimitingTextInputFormatter(500),  FilteringTextInputFormatter.allow(RegExp('[a-zA-Z- ]')),],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -233,14 +233,14 @@ static const snackBar = SnackBar(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(50)),
                     labelText: 'Event Name',
-                    hintText: "Event Name",
+                    hintText: "Event Name Characters Only",
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                 ),
                 const SizedBox(height: 10),
                 
                 TextFormField(
-                  controller: PriceController,
+                  controller: pricecontroller,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter some text';
@@ -264,7 +264,7 @@ static const snackBar = SnackBar(
                 ),
                 const SizedBox(height: 10),
                TextFormField(
-                  controller: EventDController,
+                  controller: eventddontroller,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter some text';
@@ -327,9 +327,9 @@ static const snackBar = SnackBar(
                       if (_formKey.currentState!.validate()) {
                         event = Events(
                        
-                        EventName: EventNController.text.trim(),
-                        EventPrice: PriceController.text.trim(),
-                        EventDescription: EventDController.text.trim(),
+                        EventName: eventncontroller.text.trim(),
+                        EventPrice: pricecontroller.text.trim(),
+                        EventDescription: eventddontroller.text.trim(),
                         // EventStart: St.toDate(),
                         // EventEnd: Et,
                         EventType : selectedType,
@@ -342,8 +342,8 @@ static const snackBar = SnackBar(
                       'Name': '${event.EventName}',
                       'Price': '${event.EventPrice}',
                       'Description': '${event.EventDescription}',
-                      'Start Date' :St,
-                      'End Date' :Et,
+                      'Start Date' :st,
+                      'End Date' :et,
                       'Type' :'${event.EventType}',
                       // 'Capacity' :'${event.Capacity}',
 

@@ -24,7 +24,7 @@ class _AddRideState extends State<AddRide> {
   late ridesmodel rides;
 
   List<String> _accountType = <String>[];
-   List<DateTime> dates = <DateTime>[];
+  List<DateTime> dates = <DateTime>[];
   
  
 static const snackBar = SnackBar(
@@ -40,12 +40,12 @@ static const snackBarE = SnackBar(
 
   var selectedType;
   final _formKey = GlobalKey<FormState>();
-  final RideNController = TextEditingController();
-  final RideTController = TextEditingController();
-  final PriceController = TextEditingController();
-  final DateController = TextEditingController();
-  final RideDController = TextEditingController();
-  final CapacityController = TextEditingController();
+  final ridencontroller = TextEditingController();
+  final ridetcontroller = TextEditingController();
+  final pricecontroller = TextEditingController();
+  final datecontroller = TextEditingController();
+  final ridedcontroller = TextEditingController();
+  final capacitycontroller = TextEditingController();
 
   final format = DateFormat("yyyy-MM-dd HH:mm");
   late DateTime dt;
@@ -149,13 +149,6 @@ static const snackBarE = SnackBar(
                 Column(children: <Widget>[
                   // Text('Choose Time'),
                   DateTimeField(
-                    validator: (value) {
-                        if ((value.toString().isEmpty) ||
-                            (DateTime.tryParse(value.toString()) == null)) {
-                           ScaffoldMessenger.of(context).showSnackBar(snackBarE);
-                        }
-                        return null;
-                      },
                     format: format,
                     decoration: InputDecoration(
                     filled: true,
@@ -205,8 +198,8 @@ static const snackBarE = SnackBar(
                 SizedBox(height: 10),
                 TextFormField(
                   
-                  controller: RideNController,
-                  inputFormatters: [new LengthLimitingTextInputFormatter(50),FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),],
+                  controller: ridencontroller,
+                  inputFormatters: [new LengthLimitingTextInputFormatter(50),FilteringTextInputFormatter.allow(RegExp('[a-zA-Z- ]')),],
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -214,7 +207,7 @@ static const snackBarE = SnackBar(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(50)),
                     labelText: 'Ride Name',
-                    hintText: "Ride Name",
+                    hintText: "Ride Name Character Only",
                     contentPadding: EdgeInsets.all(20.0),
                   ),
                 ),
@@ -227,11 +220,11 @@ static const snackBarE = SnackBar(
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Name": '${RideNController.text.trim()}'}).then((_) { ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
+                          .update({"Name": '${ridencontroller.text.trim()}'}).then((_) { ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
                 TextFormField(
-                  controller: RideDController,
+                  controller: ridedcontroller,
                   inputFormatters: [new LengthLimitingTextInputFormatter(500)],
                   decoration: InputDecoration(
                     filled: true,
@@ -251,11 +244,11 @@ static const snackBarE = SnackBar(
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Description": '${RideDController.text.trim()}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
+                          .update({"Description": '${ridedcontroller.text.trim()}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
                 TextFormField(
-                  controller: PriceController,
+                  controller: pricecontroller,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
                     filled: true,
@@ -277,12 +270,12 @@ static const snackBarE = SnackBar(
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Price": '${int.parse(PriceController.text.trim())}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
+                          .update({"Price": '${int.parse(pricecontroller.text.trim())}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
               
                 TextFormField(
-                  controller: CapacityController,
+                  controller: capacitycontroller,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   decoration: InputDecoration(
                     filled: true,
@@ -302,7 +295,7 @@ static const snackBarE = SnackBar(
                       child: Text('Save'),
                       onPressed: () {
                             FirebaseFirestore.instance.collection('Rides').doc(selectedType)
-                          .update({"Capacity": '${CapacityController.text.trim()}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
+                          .update({"Capacity": '${capacitycontroller.text.trim()}'}).then((_) {  ScaffoldMessenger.of(context).showSnackBar(snackBar);});                      })
                 ]),
 
               ]),
