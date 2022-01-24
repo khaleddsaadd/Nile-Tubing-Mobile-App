@@ -5,8 +5,12 @@ import 'package:nile_tubing_app/screens/Ticket.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-// Create a Form widget.
 class PaymentForm extends StatefulWidget {
+  String? RideName;
+  int? RidePrice;
+  String? selected;
+  int? Total;
+  PaymentForm({this.RideName, this.RidePrice, this.selected, this.Total});
   @override
   PaymentFormState createState() {
     return PaymentFormState();
@@ -21,15 +25,6 @@ class PaymentFormState extends State<PaymentForm> {
   final MobileController = TextEditingController();
   genders _gender = genders.male;
   methods _method = methods.vodafone;
-
-/*
-  String dropdownvalue = 'Gender';
-  var items = [
-    'Gender',
-    'Male',
-    'Female',
-  ];
-  */
 
   @override
   Widget build(BuildContext context) {
@@ -198,12 +193,16 @@ class PaymentFormState extends State<PaymentForm> {
                         gender: _gender,
                         method: _method);
 
-                    FirebaseFirestore.instance.collection('Payment').add({
+                    FirebaseFirestore.instance.collection('Reservations').add({
                       'Name': '${paymentmodel.Username}',
                       'Mail': '${paymentmodel.Useremail}',
                       'Mobile': '${paymentmodel.Userphone}',
                       'gender': '${paymentmodel.gender}',
-                      'method': '${paymentmodel.method}'
+                      'method': '${paymentmodel.method}',
+                      'RideName': widget.RideName,
+                      'RidePrice': widget.RidePrice,
+                      'Selected Date-Time': widget.selected,
+                      'Total price': widget.Total,
                     });
                     Navigator.push(
                       context,
@@ -217,32 +216,3 @@ class PaymentFormState extends State<PaymentForm> {
     );
   }
 }
-
-
-          /*  Center(
-            child: Image.asset(
-              'assets/Vod.jpg',
-              scale: 15,
-            ),
-          ),
-*/
-          /*   Center(
-            child: DropdownButton(
-              value: dropdownvalue,
-              alignment: Alignment.center,
-              underline: Container(
-                height: 1,
-                color: Colors.grey,
-              ),
-              icon: Icon(Icons.keyboard_arrow_down),
-              items: items.map((String items) {
-                return DropdownMenuItem(value: items, child: Text(items));
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownvalue = newValue!;
-                });
-              },
-            ),
-          ),
-          */

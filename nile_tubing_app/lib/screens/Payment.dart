@@ -7,7 +7,12 @@ import 'package:nile_tubing_app/screens/profile.dart';
 import 'Rides.dart';
 
 class Payment extends StatefulWidget {
-//right click refactor stateful
+  String? RideName;
+  int? RidePrice;
+  String? selected;
+  int? Total;
+  Payment({this.RideName, this.RidePrice, this.selected, this.Total});
+
   @override
   State<Payment> createState() => _PaymentState();
 }
@@ -21,7 +26,6 @@ class _PaymentState extends State<Payment> {
           padding: EdgeInsets.all(25),
           children: [
             Container(
-              // ignore: prefer_const_literals_to_create_immutables
               child: Row(children: [
                 IconButton(
                   padding: EdgeInsets.zero,
@@ -92,7 +96,12 @@ class _PaymentState extends State<Payment> {
                       ),
                     ]),
                     Padding(padding: const EdgeInsets.only(top: 20)),
-                    PaymentForm(),
+                    PaymentForm(
+                      RideName: widget.RideName,
+                      RidePrice: widget.RidePrice,
+                      selected: widget.selected,
+                      Total: widget.Total,
+                    ),
                   ],
                 )),
           ],

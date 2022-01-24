@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:nile_tubing_app/screens/Home.dart';
 import 'package:nile_tubing_app/screens/Payment.dart';
 import 'package:nile_tubing_app/screens/Rides.dart';
 import 'package:nile_tubing_app/screens/drawer.dart';
+import 'package:nile_tubing_app/screens/paymentForm.dart';
 import 'package:nile_tubing_app/screens/profile.dart';
 import 'package:nile_tubing_app/screens/signin.dart';
 
@@ -193,7 +193,13 @@ class CheckOut extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Payment()),
+                            MaterialPageRoute(
+                                builder: (context) => Payment(
+                                      RideName: RideName,
+                                      RidePrice: RidePrice,
+                                      selected: selected,
+                                      Total: Total,
+                                    )),
                           );
                         },
                         color: Color(0xff123456).withOpacity(0.8),
