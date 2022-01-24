@@ -20,30 +20,21 @@ class SelectedRide extends StatefulWidget {
 }
 
 class _SelectedRideState extends State<SelectedRide> {
-  TextEditingController dateinput = TextEditingController();
-  final capacityController = TextEditingController();
   CollectionReference users = FirebaseFirestore.instance.collection('Rides');
-  List<String> _accountType = <String>[];
-  var selectedCurrency, selected;
-  get color => null;
+  List<String> _timeSlots = <String>[];
+  var selected;
 
-  int _counter = 0;
+  int _counter = 1;
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
-  void _dec() {
+  void _decrementCounter() {
     setState(() {
       _counter--;
     });
-  }
-
-  @override
-  void initState() {
-    dateinput.text = ""; //set the initial value of text field
-    super.initState();
   }
 
   @override
@@ -96,8 +87,6 @@ class _SelectedRideState extends State<SelectedRide> {
                         ),
                       ]),
                     ),
-                    //Text(" ${data['Price']}\n${data['Name']}"),
-
                     Padding(
                       padding: EdgeInsets.only(top: 30),
                       child: Text("${data['Name']}",
@@ -166,10 +155,11 @@ class _SelectedRideState extends State<SelectedRide> {
                                     if (!snapshot.hasData) {
                                       const Text("Loading.....");
                                     } else {
-                                      _accountType.clear();
+                                      _timeSlots.clear();
                                       DocumentSnapshot snap =
                                           snapshot.data!.docs[0];
-                                      final dates = snap['Date'];
+                                      final dates =
+                                          snap['Date']; //list of timestamp
                                       final convertedDates = dates
                                           .map((date) => date.toDate())
                                           .toList();
@@ -177,7 +167,7 @@ class _SelectedRideState extends State<SelectedRide> {
                                       for (int i = 0;
                                           i < convertedDates.length;
                                           i++) {
-                                        _accountType
+                                        _timeSlots
                                             .add(convertedDates[i].toString());
                                       }
 
@@ -186,7 +176,7 @@ class _SelectedRideState extends State<SelectedRide> {
                                             MainAxisAlignment.center,
                                         children: <Widget>[
                                           DropdownButton(
-                                            items: _accountType
+                                            items: _timeSlots
                                                 .map(
                                                     (value) => DropdownMenuItem(
                                                           child: Text(
@@ -239,10 +229,10 @@ class _SelectedRideState extends State<SelectedRide> {
                                 padding: const EdgeInsets.only(left: 100.0),
                                 child: Row(
                                   children: <Widget>[
-                                    _counter != 0
+                                    _counter != 1
                                         ? new IconButton(
                                             icon: new Icon(Icons.remove),
-                                            onPressed: _dec,
+                                            onPressed: _decrementCounter,
                                           )
                                         : new Container(),
                                     new Text(_counter.toString()),
@@ -259,45 +249,40 @@ class _SelectedRideState extends State<SelectedRide> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    ElevatedButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty
-                                                    .all<Color>(Color.fromRGBO(
-                                                        238, 191, 15, 1))),
-                                        onPressed: () {},
-                                        child: Text('Add to cart',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.white,
-                                                fontFamily: 'Cairo'))),
-                                    ElevatedButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all<
-                                                    Color>(Color(0xff123456))),
-                                        onPressed: () {
-                                          ridesmodel r = ridesmodel(
-                                              rideName: data['Name'],
-                                              ridePrice:
-                                                  int.parse(data['Price']),
-                                              rideImage: data['Image']);
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CheckOut(
-                                                        RideName: r.rideName,
-                                                        RidePrice: r.ridePrice,
-                                                        RideImage: r.rideImage,
-                                                        selected: selected,
-                                                        counter: _counter,
-                                                      )));
-                                        },
-                                        child: Text('Checkout',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.white,
-                                                fontFamily: 'Cairo')))
+                                    Padding(
+                                        padding: EdgeInsets.only(left: 10),
+                                        child: ElevatedButton(
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Color.fromRGBO(
+                                                            238, 191, 15, 1))),
+                                            onPressed: () {
+                                              ridesmodel r = ridesmodel(
+                                                  rideName: data['Name'],
+                                                  ridePrice:
+                                                      int.parse(data['Price']),
+                                                  rideImage: data['Image']);
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          CheckOut(
+                                                            RideName:
+                                                                r.rideName,
+                                                            RidePrice:
+                                                                r.ridePrice,
+                                                            RideImage:
+                                                                r.rideImage,
+                                                            selected: selected,
+                                                            counter: _counter,
+                                                          )));
+                                            },
+                                            child: Text('Checkout',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.white,
+                                                    fontFamily: 'Cairo'))))
                                   ]),
                             ])),
                       ),
